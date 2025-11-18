@@ -39,7 +39,7 @@ const SpeakersSection: React.FC = () => {
           defaultValue:
             "Delivering His Keynote Address Honorable Minister Federal Republic of Nigeria.",
         }),
-        image: "/achievements/b2b-1.jpg",
+        image: "speaker-maigari.jpeg",
       },
       {
         id: 2,
@@ -48,7 +48,7 @@ const SpeakersSection: React.FC = () => {
           defaultValue:
             "Delivering welcome Address Chairman Organizing Committee",
         }),
-        image: "/achievements/b2b-2.jpg",
+        image: "speaker-usman.jpeg",
       },
       {
         id: 3,

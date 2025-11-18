@@ -141,7 +141,7 @@ const NavBar: React.FC<Props> = ({
   return (
     <div
       key={`navbar-${i18n.language}`}
-      className="nav sticky top-0 z-30 px-5 md:px-20 lg:px-30 min-h-20 p-0 bg-silver/90 backdrop-blur-md shadow-md flex items-center justify-between"
+      className="nav sticky top-0 z-30 px-5 md:px-20  min-h-20 p-0 bg-silver/90 backdrop-blur-md shadow-md flex items-center justify-between"
     >
       <h1 className="text-xl md:text-2xl font-bold text-primary drop-shadow">
         🇳🇬 NIGERIA-MOROCCO 🇲🇦
@@ -170,18 +170,7 @@ const NavBar: React.FC<Props> = ({
             "Sponsors et Partenaires"
           )}
         </a>
-        <a
-          className="text-[13px] lg:text-[14px] font-medium hover:text-primary transition whitespace-nowrap"
-          href="#updates"
-        >
-          {getTranslation("Updates", "Updates", "Mises à jour")}
-        </a>
-        <a
-          className="text-[13px] lg:text-[14px] font-medium hover:text-primary transition whitespace-nowrap"
-          href="#contact"
-        >
-          {getTranslation("Contact", "Contact", "Contact")}
-        </a>
+
         {renderEditionLinks("desktop")}
         <Button
           type="primary"
