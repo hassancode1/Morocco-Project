@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Dropdown, Drawer, Space } from "antd";
 import type { MenuProps } from "antd";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 import GlobeIcon from "../../../../components/GlobeIcon";
 import MenuIcon from "../MenuIcon";
 
@@ -14,7 +15,6 @@ const SecondEditionNavBar: React.FC<Props> = ({ onRegister, onBook }) => {
   const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false);
 
-  // Helper function to get translation with language-specific defaults
   const getTranslation = (
     key: string,
     enDefault: string,
@@ -67,18 +67,56 @@ const SecondEditionNavBar: React.FC<Props> = ({ onRegister, onBook }) => {
         >
           {getTranslation("Home", "Home", "Accueil")}
         </a>
-        <a
-          className="text-[13px] lg:text-[14px] font-medium hover:text-primary transition whitespace-nowrap"
+        <motion.a
+          animate={{
+            scale: [1, 1.12, 1],
+            color: ["rgb(55, 65, 81)", "rgb(37, 99, 235)", "rgb(55, 65, 81)"],
+          }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            repeatType: "reverse",
+          }}
+          whileHover={{
+            scale: 1.25,
+            fontWeight: 700,
+            color: "rgb(37, 99, 235)",
+          }}
+          whileTap={{ scale: 0.9 }}
+          style={{
+            textShadow: "0px 0px 10px rgba(37, 99, 235, 0.5)",
+          }}
+          className="text-[13px] lg:text-[14px] font-medium whitespace-nowrap cursor-pointer"
           href="#partners"
         >
           {getTranslation("Sponsors", "Sponsors", "Sponsors")}
-        </a>
-        <a
-          className="text-[13px] lg:text-[14px] font-medium hover:text-primary transition whitespace-nowrap"
+        </motion.a>
+        <motion.a
+          animate={{
+            scale: [1, 1.12, 1],
+            color: ["rgb(55, 65, 81)", "rgb(37, 99, 235)", "rgb(55, 65, 81)"],
+          }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            repeatType: "reverse",
+          }}
+          whileHover={{
+            scale: 1.25,
+            fontWeight: 700,
+            color: "rgb(37, 99, 235)",
+          }}
+          whileTap={{ scale: 0.9 }}
+          style={{
+            textShadow: "0px 0px 10px rgba(37, 99, 235, 0.5)",
+          }}
+          className="text-[13px] lg:text-[14px] font-medium whitespace-nowrap cursor-pointer"
           href="/first-edition"
         >
           {getTranslation("firstEditionLink", "1st Edition", "1ère édition")}
-        </a>
+        </motion.a>
         <Button
           type="primary"
           ghost
@@ -137,20 +175,58 @@ const SecondEditionNavBar: React.FC<Props> = ({ onRegister, onBook }) => {
           >
             {getTranslation("Home", "Home", "Accueil")}
           </a>
-          <a
+          <motion.a
             onClick={onClose}
-            className="text-[14px] w-full text-center"
+            animate={{
+              scale: [1, 1.12, 1],
+              color: ["rgb(55, 65, 81)", "rgb(37, 99, 235)", "rgb(55, 65, 81)"],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              repeatType: "reverse",
+            }}
+            whileHover={{
+              scale: 1.2,
+              fontWeight: 700,
+              color: "rgb(37, 99, 235)",
+            }}
+            whileTap={{ scale: 0.9 }}
+            style={{
+              textShadow: "0px 0px 10px rgba(37, 99, 235, 0.5)",
+            }}
+            className="text-[14px] w-full text-center cursor-pointer"
             href="#partners"
           >
             {getTranslation("Sponsors", "Sponsors", "Sponsors")}
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             onClick={onClose}
-            className="text-[14px] w-full text-center"
+            animate={{
+              scale: [1, 1.12, 1],
+              color: ["rgb(55, 65, 81)", "rgb(37, 99, 235)", "rgb(55, 65, 81)"],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              repeatType: "reverse",
+            }}
+            whileHover={{
+              scale: 1.2,
+              fontWeight: 700,
+              color: "rgb(37, 99, 235)",
+            }}
+            whileTap={{ scale: 0.9 }}
+            style={{
+              textShadow: "0px 0px 10px rgba(37, 99, 235, 0.5)",
+            }}
+            className="text-[14px] w-full text-center cursor-pointer"
             href="/first-edition"
           >
             {getTranslation("firstEditionLink", "1st Edition", "1ère édition")}
-          </a>
+          </motion.a>
           <Button
             type="primary"
             ghost
