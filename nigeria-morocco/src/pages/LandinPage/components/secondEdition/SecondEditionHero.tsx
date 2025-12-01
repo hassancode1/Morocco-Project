@@ -17,7 +17,7 @@ interface Countdown {
   label: string;
 }
 
-const EVENT_DATE = new Date("2025-12-08T09:00:00");
+const EVENT_DATE = new Date("2026-02-09T09:00:00");
 
 const SecondEditionHero: React.FC<Props> = ({
   onRegister,
@@ -95,8 +95,8 @@ const SecondEditionHero: React.FC<Props> = ({
             <span className="my-6 text-left text-black/80 animate-fade-in-delay2">
               {getTranslation(
                 "oct",
-                "8-10 December 2025, Casablanca, Morocco",
-                "8-10 décembre 2025, Casablanca, Maroc"
+                "9-11 February 2026, Casablanca, Morocco",
+                "9-11 février 2026, Casablanca, Maroc"
               )}
             </span>
             <div className="flex gap-4 mt-4">
