@@ -94,7 +94,7 @@ const SecondEditionHero: React.FC<Props> = ({
             </h2>
             <span className="my-6 text-left text-black/80 animate-fade-in-delay2">
               {getTranslation(
-                "oct",
+                "heroEventDate",
                 "9-11 February 2026, Casablanca, Morocco",
                 "9-11 février 2026, Casablanca, Maroc"
               )}

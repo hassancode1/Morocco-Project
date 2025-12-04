@@ -77,7 +77,7 @@ const HeroSection: React.FC<Props> = ({
     },
   ];
 
-  // Format number with K suffix if >= 1000
+
   const formatStatValue = (value: number, suffix?: string): string => {
     if (value >= 1000) {
       const kValue = (value / 1000).toFixed(1);
