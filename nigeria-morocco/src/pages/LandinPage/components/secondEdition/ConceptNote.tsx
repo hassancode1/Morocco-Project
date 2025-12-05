@@ -55,7 +55,7 @@ export default function ConceptNote() {
                     DATE
                   </p>
                   <p className="text-xl font-bold text-gray-900">
-                    8th – 11th December 2025
+                    9-11 February 2026
                   </p>
                 </div>
               </div>
@@ -603,21 +603,21 @@ export default function ConceptNote() {
             {[
               {
                 location: "Lagos",
-                date: "December 8th – 9th",
+                date: "Febuary 9th – 11th",
                 activities:
                   "Opening Ceremony, Exhibitions, B2B Sessions, Panel Sessions and Tours of key Trade Hubs around Lagos",
                 color: "from-blue-500 to-blue-600",
               },
               {
                 location: "Kano",
-                date: "December 10th",
+                date: "Febuary 10th",
                 activities:
                   "Stakeholder Roundtable on Agriculture & Commerce and Market visits",
                 color: "from-green-500 to-green-600",
               },
               {
                 location: "Abuja",
-                date: "December 11th",
+                date: "Febuary 11th",
                 activities:
                   "High-level Networking Dinner with Government officials, Captains of Industries and VIPs",
                 color: "from-purple-500 to-purple-600",
