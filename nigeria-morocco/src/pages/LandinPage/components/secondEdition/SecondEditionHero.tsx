@@ -25,7 +25,7 @@ const SecondEditionHero: React.FC<Props> = ({
 }) => {
   const { t, i18n } = useTranslation();
 
-  // Helper function to get translation with language-specific defaults
+
   const getTranslation = (
     key: string,
     enDefault: string,
@@ -95,8 +95,8 @@ const SecondEditionHero: React.FC<Props> = ({
             <span className="my-6 text-left text-black/80 animate-fade-in-delay2">
               {getTranslation(
                 "heroEventDate",
-                "9-11 February 2026, Casablanca, Morocco",
-                "9-11 février 2026, Casablanca, Maroc"
+                "9-11 February 2026, Lagos Abuja Kano",
+                "9-11 février 2026, Lagos Abuja Kano"
               )}
             </span>
             <div className="flex gap-4 mt-4">
