@@ -1,18 +1,27 @@
 const nodemailer = require('nodemailer');
 
+// For testing, you can use Ethereal (creates test accounts automatically)
+// const NodemailerTransporter = nodemailer.createTransport({
+//   host: 'smtp.ethereal.email',
+//   port: 587,
+//   auth: {
+//     user: 'ethereal.user@ethereal.email',
+//     pass: 'verysecret'
+//   }
+// });
+
+// Production Gmail configuration
 const NodemailerTransporter = nodemailer.createTransport({
   service: 'gmail',
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.EMAIL_ADDRESS,
     pass: process.env.EMAIL_SECRET,
-    port: 587, // Port for secure TLS connection
-    secure: false,
-    // clientId: process.env.CLIENT_ID,
-    // clientSecret: process.env.CLIENT_SECRET,
-    // refreshToken: process.env.REFRESH_TOKEN,
-    // accessToken: process.env.ACCESS_TOKEN,
-    // accessUrl: "https://accounts.google.com/o/oauth2/token",
   },
+  tls: {
+    rejectUnauthorized: false
+  }
 });
 
 module.exports = NodemailerTransporter;

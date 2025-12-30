@@ -129,7 +129,7 @@ module.exports.post = async (req, res) => {
     // Generate QR code with _id as data
     const qrData = await qr.toDataURL(insertedId.toString());
 
-    // Update the qr_data property of the inserted document
+
     await Record.collection.updateOne(
       { _id: insertedId },
       { $set: { qr_data: qrData } }
@@ -181,16 +181,23 @@ module.exports.post = async (req, res) => {
       //   },
       // ],
     };
-    await NodemailerTransporter.sendMail(mailOptions);
+    
+    try {
+      await NodemailerTransporter.sendMail(mailOptions);
+      console.log("Email sent successfully to:", email);
+    } catch (emailError) {
+      console.log("Email sending failed, but registration successful:", emailError.message);
+    }
 
     res.status(200).json({
-      message: "Regitered Successfully",
+      message: "Registered Successfully",
       success: true,
       id: insertedId,
+      emailSent: false, 
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ errors: errors, success: false });
+    res.status(500).json({ error: error.message, success: false });
   }
 };
 

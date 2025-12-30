@@ -52,7 +52,7 @@ export interface InitialValuesProps {
 interface UploadProps {
   name: string;
   multiple: boolean;
-  action: string;
+  action?: string;
   beforeUpload: (file: File) => boolean | void | Promise<boolean | void>;
   onDrop: (e: React.DragEvent<HTMLDivElement>) => void;
   accept: string;
@@ -514,7 +514,6 @@ export default function Register() {
     name: "file",
     multiple: false,
     accept: "image/png, image/jpeg",
-    action: "https://api.cloudinary.com/v1_1/djlbovjlt/image/upload",
     beforeUpload: (file) => {
       const uploadPreset = "v4lnyqau"; // Replace with your Cloudinary upload preset name
       setUploading(true); // Set uploading state to true
@@ -524,7 +523,7 @@ export default function Register() {
       formData.append("upload_preset", uploadPreset);
 
       // Upload the file
-      return fetch("https://api.cloudinary.com/v1_1/djlbovjlt/image/upload", {
+      fetch("https://api.cloudinary.com/v1_1/djlbovjlt/image/upload", {
         method: "POST",
         body: formData,
       })
@@ -548,7 +547,6 @@ export default function Register() {
         });
 
       // Return false to prevent default upload behavior
-      // Returning the fetch Promise allows async handling
       return false;
     },
 

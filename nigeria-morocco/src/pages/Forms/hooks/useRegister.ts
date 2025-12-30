@@ -27,7 +27,7 @@ const useRegister = () => {
       stopLoading();
 
       notification.error({
-        message: error?.response?.data?.message,
+        message: error?.response?.data?.message || 'Registration failed',
       });
       return { data: null, status: false };
     }
