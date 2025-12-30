@@ -95,6 +95,15 @@ module.exports.post = async (req, res) => {
   } = req.body;
 
   try {
+
+    const existingUser = await Record.findOne({ email });
+    if (existingUser) {
+      return res.status(409).json({
+        success: false,
+        error: "You are already registered with this email address",
+        data: null
+      });
+    }
     const result = await Record.collection.insertOne({
       company_name,
       creation_date,
