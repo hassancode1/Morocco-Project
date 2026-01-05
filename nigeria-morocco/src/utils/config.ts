@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const httpClient = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://morocco-nig.fly.dev",
   headers: {
     Accept: "application/json",
   },

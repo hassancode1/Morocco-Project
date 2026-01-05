@@ -13,7 +13,16 @@ const partnerLogos = {
       alt: "fenagri",
       style: { maxHeight: 150, maxWidth: 380 },
     },
+
   ],
+  officialAgriculture: [
+    {
+      src: "nirsal.jpeg",
+      alt: "nirsal",
+      style: { maxHeight: 150, maxWidth: 380 },
+    },
+  ]
+,
   officialAirTransport: [
     { src: "ram.png", alt: "ram", style: { maxHeight: 150, maxWidth: 380 } },
   ],
@@ -65,26 +74,54 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
           />
         ))}
       </div>
-      <div className="w-full md:w-[70%] md:px-32 mt-2 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 place-items-center">
-          <div className="w-full">
-            <p className="uppercase text-red-700 font-semibold mb-2 text-center text-sm md:text-base tracking-wider">
+      <div className="w-full md:w-[90%] md:px-8 mt-2 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
+          <div className="w-full min-w-0">
+            <p className="uppercase text-red-700 font-semibold mb-4 text-center text-xs md:text-sm tracking-wider">
               Official Partner Agro Industry
             </p>
-            <div className="flex justify-center">
+            <div className="flex justify-center items-center gap-4 flex-nowrap">
               {partnerLogos.officialAgro.map(({ src, alt, style }) => (
                 <img
                   key={src}
                   src={src}
                   alt={alt}
-                  className="rounded-xl shadow-lg bg-white/90 p-3 border-2 border-blue-200 hover:scale-105 hover:shadow-xl transition-all duration-200 mx-auto block"
-                  style={{ ...style, width: "100%", objectFit: "contain" }}
+                  className="rounded-xl shadow-lg bg-white/90 p-2 border-2 border-blue-200 hover:scale-105 hover:shadow-xl transition-all duration-200"
+                  style={{ 
+                    maxHeight: style?.maxHeight || 120, 
+                    maxWidth: "100%", 
+                    height: "auto",
+                    width: "auto",
+                    objectFit: "contain" 
+                  }}
                 />
               ))}
             </div>
           </div>
-          <div className="w-full">
-            <p className="uppercase text-red-700 font-semibold mb-2 text-center text-sm md:text-base tracking-wider">
+          <div className="w-full min-w-0">
+            <p className="uppercase text-red-700 font-semibold mb-4 text-center text-xs md:text-sm tracking-wider">
+              Official Partner Agriculture & Agro-Industry
+            </p>
+            <div className="flex justify-center items-center gap-4 flex-nowrap">
+              {partnerLogos.officialAgriculture.map(({ src, alt, style }) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt={alt}
+                  className="rounded-xl shadow-lg bg-white/90 p-2 border-2 border-blue-200 hover:scale-105 hover:shadow-xl transition-all duration-200"
+                  style={{ 
+                    maxHeight: style?.maxHeight || 120, 
+                    maxWidth: "100%", 
+                    height: "auto",
+                    width: "auto",
+                    objectFit: "contain" 
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="w-full min-w-0">
+            <p className="uppercase text-red-700 font-semibold mb-4 text-center text-xs md:text-sm tracking-wider">
               Official Air Transport Sponsor
             </p>
             <div className="flex justify-center">
@@ -93,8 +130,14 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
                   key={src}
                   src={src}
                   alt={alt}
-                  className="rounded-xl shadow-lg bg-white/90 p-3 border-2 border-blue-200 hover:scale-105 hover:shadow-xl transition-all duration-200 mx-auto block"
-                  style={{ ...style, width: "100%", objectFit: "contain" }}
+                  className="rounded-xl shadow-lg bg-white/90 p-2 border-2 border-blue-200 hover:scale-105 hover:shadow-xl transition-all duration-200"
+                  style={{ 
+                    maxHeight: style?.maxHeight || 120, 
+                    maxWidth: "100%",
+                    height: "auto",
+                    width: "auto",
+                    objectFit: "contain" 
+                  }}
                 />
               ))}
             </div>

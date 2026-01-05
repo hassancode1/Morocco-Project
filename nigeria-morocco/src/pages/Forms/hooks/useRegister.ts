@@ -25,9 +25,8 @@ const useRegister = () => {
       }
     } catch (error: any) {
       stopLoading();
-
       notification.error({
-        message: error?.response?.data?.message || 'Registration failed',
+        message: error?.response?.data?.message ||error?.response?.data?.error || 'Registration failed',
       });
       return { data: null, status: false };
     }

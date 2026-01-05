@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Target,
   Users,
@@ -14,9 +15,306 @@ import {
   Truck,
   Factory,
   Sparkles,
+  X,
 } from "lucide-react";
 
 export default function ConceptNote() {
+  const [selectedSector, setSelectedSector] = useState<string | null>(null);
+
+  const sectorIcons: Record<string, { icon: any; color: string }> = {
+    "Agriculture & Agri-industry": {
+      icon: Leaf,
+      color: "from-green-500 to-emerald-600",
+    },
+    "Electricity & Renewable Energy": {
+      icon: Zap,
+      color: "from-yellow-500 to-orange-600",
+    },
+    "Digital Economy": {
+      icon: Globe,
+      color: "from-blue-500 to-cyan-600",
+    },
+    "Banking & Finance": {
+      icon: DollarSign,
+      color: "from-purple-500 to-pink-600",
+    },
+    "Tourism, Culture & Handicrafts": {
+      icon: Users,
+      color: "from-red-500 to-rose-600",
+    },
+    "Mines & Steel": {
+      icon: Factory,
+      color: "from-gray-600 to-slate-700",
+    },
+  };
+
+  const sectorDetails: Record<string, JSX.Element> = {
+    "Agriculture & Agri-industry": (
+      <div className="space-y-6">
+        <div className="grid md:grid-cols-2 gap-8 mb-8">
+          <div className="bg-gradient-to-br from-green-600 to-emerald-600 text-white rounded-3xl p-10 shadow-2xl">
+            <h3 className="text-4xl font-bold mb-4">$10 Billion</h3>
+            <p className="text-xl mb-6">
+              Nigeria imported food and agricultural products in 2023
+              according to International Trade Administration
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2">
+                <ChevronRight size={20} />
+                <span>World-class expertise in fertilizers (OCP)</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <ChevronRight size={20} />
+                <span>Advanced irrigation systems</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <ChevronRight size={20} />
+                <span>Greenhouse technology</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <ChevronRight size={20} />
+                <span>New farming technologies</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            {[
+              {
+                title: "Moroccan Agribusiness Investment",
+                desc: "Investment in Nigeria's food belt - approximately $7 billion opportunity in Nigerian market for agri-food products",
+              },
+              {
+                title: "Special Agro-Processing Zones",
+                desc: "Partnership for improvement of current production to attain food security and export excess",
+              },
+              {
+                title: "Livestock Trade Development",
+                desc: "Partnership with World Bank L-PRES project to improve milk quality and beef market development",
+              },
+            ].map((opp, idx) => (
+              <div
+                key={idx}
+                className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 shadow-lg border-l-4 border-green-600"
+              >
+                <h4 className="text-xl font-bold text-gray-900 mb-2">
+                  {opp.title}
+                </h4>
+                <p className="text-gray-700">{opp.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-3xl shadow-2xl p-8 border-2 border-green-200">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+            <Sparkles className="text-green-600 mr-3" size={28} />
+            Key Opportunities
+          </h3>
+          <p className="text-lg text-gray-700 leading-relaxed">
+            Create an opportunity and template for Nigerian and Moroccan
+            companies in the agriculture sector for knowledge exchange
+            regarding Morocco's new agricultural techniques & innovative
+            solutions to promote new agricultural practices, and to establish
+            joint ventures and partnerships by taking advantage of Nigeria's
+            vast arable land, dams and good climate to enhance agricultural
+            production for food security and exports.
+          </p>
+        </div>
+      </div>
+    ),
+    "Electricity & Renewable Energy": (
+      <div className="space-y-6">
+        <div className="grid md:grid-cols-2 gap-8 mb-8">
+          <div className="bg-gradient-to-br from-orange-600 to-yellow-600 text-white rounded-3xl p-10 shadow-2xl transform hover:scale-105 transition-transform">
+            <h3 className="text-3xl font-bold mb-4">
+              Morocco's Noor Solar Plant
+            </h3>
+            <p className="text-xl">
+              The largest concentrated solar powered plant in the World
+            </p>
+          </div>
+
+          <div className="bg-gradient-to-br from-gray-800 to-gray-900 text-white rounded-3xl p-10 shadow-2xl transform hover:scale-105 transition-transform">
+            <h3 className="text-3xl font-bold mb-4">Nigeria's Energy Gap</h3>
+            <p className="text-xl">
+              Significant energy access gaps especially for industrial use
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
+          <h3 className="text-3xl font-bold text-gray-900 mb-8 flex items-center">
+            <Award className="text-orange-600 mr-3" size={32} />
+            Opportunities
+          </h3>
+          <div className="space-y-6">
+            <div className="flex items-start space-x-4 bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-2xl">
+              <div className="w-12 h-12 bg-gradient-to-br from-yellow-600 to-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Zap className="text-white" size={24} />
+              </div>
+              <div>
+                <h4 className="text-xl font-bold text-gray-900 mb-2">
+                  Energy Collaboration
+                </h4>
+                <p className="text-gray-700">
+                  Collaboration between Moroccan Energy companies and Nigeria
+                  State governments, Regional development commissions,
+                  Electricity Distribution companies, Rural Electrification
+                  Agency on solar mini-grids, panel manufacturing, and energy
+                  storage systems
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-4 bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-2xl">
+              <div className="w-12 h-12 bg-gradient-to-br from-yellow-600 to-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Factory className="text-white" size={24} />
+              </div>
+              <div>
+                <h4 className="text-xl font-bold text-gray-900 mb-2">
+                  Industrial Parks
+                </h4>
+                <p className="text-gray-700">
+                  Joint development of renewable-powered industrial parks in
+                  Nigeria to increase electricity generation
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+    "Digital Economy": (
+      <div className="space-y-6">
+        <div className="mb-8">
+          <p className="text-lg text-gray-700 mb-6">
+            Both countries are digital leaders in their sub-regions
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {[
+            "Startup incubation",
+            "E-commerce integration",
+            "Digital ID solutions",
+            "Cross-border fintech collaboration",
+            "Cybersecurity infrastructure",
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="flex items-center space-x-3 bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-xl"
+            >
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <ChevronRight className="text-white" size={18} />
+              </div>
+              <span className="text-gray-800 font-medium">{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
+    "Banking & Finance": (
+      <div className="space-y-6">
+        <div className="mb-8">
+          <p className="text-lg text-gray-700 mb-6">
+            Essential for unlocking full potential of Nigeria-Morocco
+            trade relations
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {[
+            "Bank-to-bank cooperation",
+            "Correspondent banking & letters of credit",
+            "Bilateral payment systems",
+            "Fintech partnerships",
+            "Joint venture funding framework",
+            "Bilateral financial desks",
+            "Islamic finance and green bonds",
+            "Development finance collaboration",
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="flex items-center space-x-3 bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-xl"
+            >
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <ChevronRight className="text-white" size={18} />
+              </div>
+              <span className="text-gray-800 font-medium">{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
+    "Tourism, Culture & Handicrafts": (
+      <div className="space-y-6">
+        <div className="bg-gradient-to-br from-red-50 to-rose-50 rounded-3xl p-8 shadow-2xl">
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            Cultural Exchange Opportunities
+          </h3>
+          <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            Both Nigeria and Morocco have rich cultural heritage and vibrant
+            tourism industries. This sector presents opportunities for:
+          </p>
+          <div className="space-y-4">
+            {[
+              "Cultural tourism partnerships",
+              "Handicraft trade and exhibitions",
+              "Heritage site collaborations",
+              "Cultural festivals and events",
+              "Artisan exchange programs",
+              "Traditional craft preservation",
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="flex items-center space-x-3 bg-white p-4 rounded-xl"
+              >
+                <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-rose-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <ChevronRight className="text-white" size={18} />
+                </div>
+                <span className="text-gray-800 font-medium">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ),
+    "Mines & Steel": (
+      <div className="space-y-6">
+        <div className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-3xl p-8 shadow-2xl">
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            Mining & Steel Industry Opportunities
+          </h3>
+          <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            Both countries have significant mineral resources and potential for
+            collaboration in mining and steel production:
+          </p>
+          <div className="space-y-4">
+            {[
+              "Iron ore extraction and processing",
+              "Steel manufacturing partnerships",
+              "Mineral exploration and development",
+              "Technology transfer in mining",
+              "Infrastructure development for mining",
+              "Sustainable mining practices",
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="flex items-center space-x-3 bg-white p-4 rounded-xl"
+              >
+                <div className="w-8 h-8 bg-gradient-to-br from-gray-600 to-slate-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <ChevronRight className="text-white" size={18} />
+                </div>
+                <span className="text-gray-800 font-medium">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ),
+  };
+
   return (
     <div className=" bg-white">
       {/* WELCOME SECTION */}
@@ -261,7 +559,8 @@ export default function ConceptNote() {
             ].map((sector, idx) => (
               <div
                 key={idx}
-                className="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all overflow-hidden transform hover:-translate-y-2"
+                onClick={() => setSelectedSector(sector.title)}
+                className="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all overflow-hidden transform hover:-translate-y-2 cursor-pointer"
               >
                 <div className={`h-2 bg-gradient-to-r ${sector.color}`}></div>
                 <div className="p-8">
@@ -280,259 +579,8 @@ export default function ConceptNote() {
         </div>
       </section>
 
-      {/* AGRICULTURE & AGRI-BUSINESS */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-3 mb-6">
-              <Leaf className="text-green-600" size={48} />
-              <h2 className="text-5xl font-bold text-gray-900">
-                <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                  AGRICULTURE & AGRI-BUSINESS
-                </span>
-              </h2>
-            </div>
-            <div className="w-32 h-1.5 bg-gradient-to-r from-green-600 to-emerald-600 mx-auto"></div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-gradient-to-br from-green-600 to-emerald-600 text-white rounded-3xl p-10 shadow-2xl">
-              <h3 className="text-4xl font-bold mb-4">$10 Billion</h3>
-              <p className="text-xl mb-6">
-                Nigeria imported food and agricultural products in 2023
-                according to International Trade Administration
-              </p>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <ChevronRight size={20} />
-                  <span>World-class expertise in fertilizers (OCP)</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <ChevronRight size={20} />
-                  <span>Advanced irrigation systems</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <ChevronRight size={20} />
-                  <span>Greenhouse technology</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <ChevronRight size={20} />
-                  <span>New farming technologies</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              {[
-                {
-                  title: "Moroccan Agribusiness Investment",
-                  desc: "Investment in Nigeria's food belt - approximately $7 billion opportunity in Nigerian market for agri-food products",
-                },
-                {
-                  title: "Special Agro-Processing Zones",
-                  desc: "Partnership for improvement of current production to attain food security and export excess",
-                },
-                {
-                  title: "Livestock Trade Development",
-                  desc: "Partnership with World Bank L-PRES project to improve milk quality and beef market development",
-                },
-              ].map((opp, idx) => (
-                <div
-                  key={idx}
-                  className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 shadow-lg border-l-4 border-green-600"
-                >
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">
-                    {opp.title}
-                  </h4>
-                  <p className="text-gray-700">{opp.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-white rounded-3xl shadow-2xl p-8 border-2 border-green-200">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-              <Sparkles className="text-green-600 mr-3" size={28} />
-              Key Opportunities
-            </h3>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              Create an opportunity and template for Nigerian and Moroccan
-              companies in the agriculture sector for knowledge exchange
-              regarding Morocco's new agricultural techniques & innovative
-              solutions to promote new agricultural practices, and to establish
-              joint ventures and partnerships by taking advantage of Nigeria's
-              vast arable land, dams and good climate to enhance agricultural
-              production for food security and exports.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ELECTRICITY & RENEWABLE ENERGY */}
-      <section className="py-20 px-4 bg-gradient-to-br from-yellow-50 to-orange-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-3 mb-6">
-              <Zap className="text-orange-600" size={48} />
-              <h2 className="text-5xl font-bold text-gray-900">
-                <span className="bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
-                  ELECTRICITY & RENEWABLE ENERGY
-                </span>
-              </h2>
-            </div>
-            <div className="w-32 h-1.5 bg-gradient-to-r from-yellow-600 to-orange-600 mx-auto"></div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div className="bg-gradient-to-br from-orange-600 to-yellow-600 text-white rounded-3xl p-10 shadow-2xl transform hover:scale-105 transition-transform">
-              <h3 className="text-3xl font-bold mb-4">
-                Morocco's Noor Solar Plant
-              </h3>
-              <p className="text-xl">
-                The largest concentrated solar powered plant in the World
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 text-white rounded-3xl p-10 shadow-2xl transform hover:scale-105 transition-transform">
-              <h3 className="text-3xl font-bold mb-4">Nigeria's Energy Gap</h3>
-              <p className="text-xl">
-                Significant energy access gaps especially for industrial use
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-8 flex items-center">
-              <Award className="text-orange-600 mr-3" size={32} />
-              Opportunities
-            </h3>
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4 bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-2xl">
-                <div className="w-12 h-12 bg-gradient-to-br from-yellow-600 to-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Zap className="text-white" size={24} />
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">
-                    Energy Collaboration
-                  </h4>
-                  <p className="text-gray-700">
-                    Collaboration between Moroccan Energy companies and Nigeria
-                    State governments, Regional development commissions,
-                    Electricity Distribution companies, Rural Electrification
-                    Agency on solar mini-grids, panel manufacturing, and energy
-                    storage systems
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4 bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-2xl">
-                <div className="w-12 h-12 bg-gradient-to-br from-yellow-600 to-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Factory className="text-white" size={24} />
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">
-                    Industrial Parks
-                  </h4>
-                  <p className="text-gray-700">
-                    Joint development of renewable-powered industrial parks in
-                    Nigeria to increase electricity generation
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* DIGITAL ECONOMY & BANKING */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Digital Economy */}
-            <div>
-              <div className="mb-8">
-                <div className="inline-flex items-center space-x-3 mb-4">
-                  <Globe className="text-blue-600" size={40} />
-                  <h2 className="text-4xl font-bold">
-                    <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                      DIGITAL ECONOMY
-                    </span>
-                  </h2>
-                </div>
-                <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 mb-6"></div>
-                <p className="text-lg text-gray-700 mb-6">
-                  Both countries are digital leaders in their sub-regions
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                {[
-                  "Startup incubation",
-                  "E-commerce integration",
-                  "Digital ID solutions",
-                  "Cross-border fintech collaboration",
-                  "Cybersecurity infrastructure",
-                ].map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center space-x-3 bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-xl"
-                  >
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <ChevronRight className="text-white" size={18} />
-                    </div>
-                    <span className="text-gray-800 font-medium">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Banking & Finance */}
-            <div>
-              <div className="mb-8">
-                <div className="inline-flex items-center space-x-3 mb-4">
-                  <DollarSign className="text-purple-600" size={40} />
-                  <h2 className="text-4xl font-bold">
-                    <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                      BANKING & FINANCE
-                    </span>
-                  </h2>
-                </div>
-                <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mb-6"></div>
-                <p className="text-lg text-gray-700 mb-6">
-                  Essential for unlocking full potential of Nigeria-Morocco
-                  trade relations
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                {[
-                  "Bank-to-bank cooperation",
-                  "Correspondent banking & letters of credit",
-                  "Bilateral payment systems",
-                  "Fintech partnerships",
-                  "Joint venture funding framework",
-                  "Bilateral financial desks",
-                  "Islamic finance and green bonds",
-                  "Development finance collaboration",
-                ].map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center space-x-3 bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-xl"
-                  >
-                    <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <ChevronRight className="text-white" size={18} />
-                    </div>
-                    <span className="text-gray-800 font-medium">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* FEATURES HIGHLIGHTS */}
-      <section className="py-20 px-4 bg-gradient-to-br from-green-600 to-emerald-600 text-white">
+      {/* <section className="py-20 px-4 bg-gradient-to-br from-green-600 to-emerald-600 text-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold mb-4">FEATURES HIGHLIGHTS</h2>
@@ -585,7 +633,7 @@ export default function ConceptNote() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* EVENT SCHEDULE */}
       <section className="py-20 px-4 bg-white">
@@ -603,23 +651,38 @@ export default function ConceptNote() {
             {[
               {
                 location: "Lagos",
-                date: "Febuary 9th – 11th",
-                activities:
-                  "Opening Ceremony, Exhibitions, B2B Sessions, Panel Sessions and Tours of key Trade Hubs around Lagos",
+                date: "February 9th, 2026",
+                venue: "Federal Palace Hotel, Lagos",
+                activities: [
+                  "High-level Conference",
+                  "B2B Meetings",
+                  "Exhibition",
+                  "Other related activities",
+                ],
                 color: "from-blue-500 to-blue-600",
               },
               {
                 location: "Kano",
-                date: "Febuary 10th",
-                activities:
-                  "Stakeholder Roundtable on Agriculture & Commerce and Market visits",
+                date: "February 10th, 2026",
+                venue: "Bristol Palace Hotel, Kano",
+                focus: "Agriculture and Agro-Industry",
+                activities: [
+                  "B2B Engagements",
+                  "Farm Visits",
+                  "Market Visits",
+                  "Visits to Dams",
+                  "Factory Visits (Agro-processing and Light Manufacturing)",
+                ],
                 color: "from-green-500 to-green-600",
               },
               {
                 location: "Abuja",
-                date: "Febuary 11th",
-                activities:
-                  "High-level Networking Dinner with Government officials, Captains of Industries and VIPs",
+                date: "February 11th, 2026",
+                venue: "Abuja Continental Hotel",
+                activities: [
+                  "Award Ceremony (Morning)",
+                  "High-level Closed-door Meeting between representatives of the Governments of Nigeria and Morocco, alongside selected captains of industry",
+                ],
                 color: "from-purple-500 to-purple-600",
               },
             ].map((event, idx) => (
@@ -639,9 +702,50 @@ export default function ConceptNote() {
                   </div>
                 </div>
                 <div className="p-8">
-                  <p className="text-lg text-gray-700 leading-relaxed">
-                    {event.activities}
-                  </p>
+                  <div className="mb-6">
+                    <div className="flex items-start space-x-3 mb-4">
+                      <MapPin className="text-green-600 flex-shrink-0 mt-1" size={24} />
+                      <div>
+                        <p className="text-sm text-green-700 font-semibold mb-1">
+                          VENUE
+                        </p>
+                        <p className="text-lg font-bold text-gray-900">
+                          {event.venue}
+                        </p>
+                      </div>
+                    </div>
+                    {event.focus && (
+                      <div className="mt-4">
+                        <p className="text-sm text-green-700 font-semibold mb-2">
+                          FOCUS
+                        </p>
+                        <p className="text-lg font-semibold text-gray-800">
+                          {event.focus}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-sm text-green-700 font-semibold mb-3">
+                      ACTIVITIES
+                    </p>
+                    <ul className="space-y-2">
+                      {event.activities.map((activity, actIdx) => (
+                        <li
+                          key={actIdx}
+                          className="flex items-start space-x-3 text-gray-700"
+                        >
+                          <ChevronRight
+                            className="text-green-600 flex-shrink-0 mt-1"
+                            size={20}
+                          />
+                          <span className="text-lg leading-relaxed">
+                            {activity}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             ))}
@@ -650,7 +754,7 @@ export default function ConceptNote() {
       </section>
 
       {/* PARTICIPANTS & STAKEHOLDERS */}
-      <section className="py-20 px-4 bg-gradient-to-br from-green-50 to-emerald-50">
+      {/* <section className="py-20 px-4 bg-gradient-to-br from-green-50 to-emerald-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold text-gray-900 mb-4">
@@ -758,10 +862,10 @@ export default function ConceptNote() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* STRATEGIC TRADE INFRASTRUCTURE */}
-      <section className="py-20 px-4 bg-white">
+      {/* <section className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-3 mb-6">
@@ -834,7 +938,7 @@ export default function ConceptNote() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* TRADE PRODUCTS */}
       <section className="py-20 px-4 bg-gradient-to-br from-green-50 to-emerald-50">
@@ -1047,7 +1151,7 @@ export default function ConceptNote() {
       </section>
 
       {/* CONCLUSION */}
-      <section className="py-20 px-4 bg-white">
+      {/* <section className="py-20 px-4 bg-white">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-5xl font-bold text-gray-900 mb-8">
             <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
@@ -1070,7 +1174,52 @@ export default function ConceptNote() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
+
+      {/* SECTOR DETAIL MODAL */}
+      {selectedSector && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm"
+          onClick={() => setSelectedSector(null)}
+        >
+          <div
+            className="bg-white rounded-3xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-10">
+              <div className="flex items-center space-x-4">
+                {selectedSector && sectorIcons[selectedSector] && (
+                  <div
+                    className={`w-12 h-12 bg-gradient-to-br ${sectorIcons[selectedSector].color} rounded-xl flex items-center justify-center flex-shrink-0`}
+                  >
+                    {(() => {
+                      const IconComponent = sectorIcons[selectedSector].icon;
+                      return <IconComponent className="text-white" size={28} />;
+                    })()}
+                  </div>
+                )}
+                <h2 className="text-3xl font-bold text-gray-900">
+                  {selectedSector}
+                </h2>
+              </div>
+              <button
+                onClick={() => setSelectedSector(null)}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                aria-label="Close modal"
+              >
+                <X className="text-gray-600" size={24} />
+              </button>
+            </div>
+            <div className="p-6 md:p-8">
+              {sectorDetails[selectedSector] || (
+                <p className="text-gray-600">
+                  Details for this sector are coming soon.
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
