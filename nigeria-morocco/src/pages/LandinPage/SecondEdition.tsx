@@ -5,7 +5,7 @@ import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import Modals from "./components/Modals";
 import SecondEditionHero from "./components/secondEdition/SecondEditionHero";
 import SecondEditionPartners from "./components/secondEdition/SecondEditionPartners";
-import SecondEditionPrograms from "./components/secondEdition/SecondEditionPrograms";
+// import SecondEditionPrograms from "./components/secondEdition/SecondEditionPrograms";
 import SecondEditionSpaceBooking from "./components/secondEdition/SecondEditionSpaceBooking";
 import SecondEditionAbout from "./components/secondEdition/SecondEditionAbout";
 import SecondEditionNews from "./components/secondEdition/SecondEditionNews";
@@ -37,10 +37,11 @@ export default function SecondEdition() {
           onRegister={() => setIsModalOpen(true)}
           onScrollToPartners={handleScrollToPartners}
         />
+                <SecondEditionPartners ref={partnersRef} />
         <ConceptNote />
 
-        <SecondEditionPartners ref={partnersRef} />
-        <SecondEditionPrograms />
+
+        {/* <SecondEditionPrograms /> */}
         <SecondEditionSpaceBooking onBook={() => setBookingModalOpen(true)} />
         <SecondEditionAbout />
         <SecondEditionNews />

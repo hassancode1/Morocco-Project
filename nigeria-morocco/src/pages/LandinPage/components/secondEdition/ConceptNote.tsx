@@ -12,11 +12,11 @@ import {
   MapPin,
   Calendar,
   ChevronRight,
-  Truck,
   Factory,
   Sparkles,
   X,
 } from "lucide-react";
+import ProgramItems from "../ProgramItems";
 
 export default function ConceptNote() {
   const [selectedSector, setSelectedSector] = useState<string | null>(null);
@@ -527,32 +527,32 @@ export default function ConceptNote() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: Leaf,
+                icon: "agric.png",
                 title: "Agriculture & Agri-industry",
                 color: "from-green-500 to-emerald-600",
               },
               {
-                icon: Zap,
+                icon: "energy.jpg",
                 title: "Electricity & Renewable Energy",
                 color: "from-yellow-500 to-orange-600",
               },
               {
-                icon: Globe,
+                icon: "digital.jpeg",
                 title: "Digital Economy",
                 color: "from-blue-500 to-cyan-600",
               },
               {
-                icon: DollarSign,
+                icon: "e-government.png",
                 title: "Banking & Finance",
                 color: "from-purple-500 to-pink-600",
               },
               {
-                icon: Users,
+                icon: "automobile.png",
                 title: "Tourism, Culture & Handicrafts",
                 color: "from-red-500 to-rose-600",
               },
               {
-                icon: Factory,
+                icon: "minerals.jpg",
                 title: "Mines & Steel",
                 color: "from-gray-600 to-slate-700",
               },
@@ -560,19 +560,13 @@ export default function ConceptNote() {
               <div
                 key={idx}
                 onClick={() => setSelectedSector(sector.title)}
-                className="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all overflow-hidden transform hover:-translate-y-2 cursor-pointer"
+                className="group hover:scale-105 hover:shadow-xl transition-all duration-200 cursor-pointer"
               >
-                <div className={`h-2 bg-gradient-to-r ${sector.color}`}></div>
-                <div className="p-8">
-                  <div
-                    className={`w-16 h-16 bg-gradient-to-br ${sector.color} rounded-xl flex items-center justify-center mb-4 transform group-hover:scale-110 transition-transform`}
-                  >
-                    <sector.icon className="text-white" size={32} />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900">
-                    {sector.title}
-                  </h3>
-                </div>
+                <ProgramItems
+                  icon={sector.icon}
+                  title={sector.title}
+                  content=""
+                />
               </div>
             ))}
           </div>
