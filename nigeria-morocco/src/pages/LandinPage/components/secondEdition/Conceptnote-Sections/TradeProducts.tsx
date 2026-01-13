@@ -1,6 +1,4 @@
 "use client";
-
-import React from "react";
 import { motion } from "framer-motion"; // Adjusted to match your other files
 import { ArrowRight, Package } from "lucide-react";
 

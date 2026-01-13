@@ -1,6 +1,4 @@
 "use client";
-
-import React from "react";
 import { motion } from "framer-motion";
 import { FileText, Building, Globe, TrendingUp, Ship, Wheat, CheckCircle } from "lucide-react";
 
