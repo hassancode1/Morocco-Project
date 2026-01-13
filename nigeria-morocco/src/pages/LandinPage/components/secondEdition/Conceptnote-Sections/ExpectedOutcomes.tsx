@@ -1,59 +1,74 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion"; // Standardized import
-import { FileText, Building, Globe, TrendingUp, Ship, Wheat } from "lucide-react";
+import { motion } from "framer-motion";
+import { FileText, Building, Globe, TrendingUp, Ship, Wheat, CheckCircle } from "lucide-react";
 
-export default function ExpectedOutcomes() { // Changed to default export
+export default function ExpectedOutcomes() {
     const outcomes = [
         {
             icon: <FileText className="w-6 h-6" />,
-            title: "Strategic MoUs & Agreements",
-            desc: "Signing of joint ventures and investment agreements"
+            title: "Strategic MoUs",
+            desc: "Signing of joint ventures and investment agreements between key stakeholders."
         },
         {
             icon: <Building className="w-6 h-6" />,
-            title: "Manufacturing Facilities",
-            desc: "Establishment of Moroccan agri-processing facilities in Nigeria"
+            title: "Manufacturing Hubs",
+            desc: "Establishment of Moroccan agri-processing and industrial facilities in Nigeria."
         },
         {
             icon: <Globe className="w-6 h-6" />,
             title: "Market Access",
-            desc: "Greater access for Nigerian commodities to Moroccan and European markets"
+            desc: "Greater access for Nigerian commodities to Moroccan and European markets."
         },
         {
             icon: <TrendingUp className="w-6 h-6" />,
-            title: "Trade Barrier Resolution",
-            desc: "Tangible steps toward resolving non-tariff barriers and certification challenges"
+            title: "Trade Solutions",
+            desc: "Tangible steps toward resolving non-tariff barriers and certification challenges."
         },
         {
             icon: <Ship className="w-6 h-6" />,
             title: "Maritime Corridor",
-            desc: "Launch of direct sea lane between Lagos and Moroccan ports"
+            desc: "Launch of direct sea lane between Lagos and Moroccan ports to cut logistics costs."
         },
         {
             icon: <Wheat className="w-6 h-6" />,
-            title: "AfCFTA Cooperation",
-            desc: "Stronger regional cooperation aligned with AfCFTA goals"
+            title: "AfCFTA Success",
+            desc: "Stronger regional cooperation aligned with AfCFTA goals and economic integration."
         }
     ];
 
     return (
-        <section className="py-20 md:py-32 bg-neutral-900">
-            <div className="max-w-7xl mx-auto px-6">
+        <section className="py-24 md:py-32 bg-[#0D1210] relative overflow-hidden">
 
+            {/* Background Decor */}
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2C3E30] opacity-10 blur-[120px] rounded-full pointer-events-none" />
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+
+                {/* Header */}
                 <div className="max-w-3xl mb-16">
-                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-800 text-neutral-300 text-sm font-medium mb-6">
-                        Expected Outcomes
-                    </span>
-                    <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6 font-syne">
-                        What We'll Achieve Together
-                    </h2>
-                    <p className="text-lg text-neutral-400 leading-relaxed font-inter">
-                        Concrete deliverables and actionable partnerships that will reshape bilateral trade for years to come.
-                    </p>
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2C3E30]/30 border border-[#2C3E30] text-[#DDE5D7] text-xs font-bold uppercase tracking-widest mb-6 font-inter">
+                            <CheckCircle className="w-4 h-4 text-[#4F7A55]" />
+                            <span>Expected Outcomes</span>
+                        </div>
+                        <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-6 font-syne leading-tight">
+                            What We'll <br/>
+                            <span className="text-[#4F7A55]">Achieve Together.</span>
+                        </h2>
+                        <p className="text-lg text-[#8A8A8A] leading-relaxed font-inter max-w-xl">
+                            Concrete deliverables and actionable partnerships that will reshape bilateral trade for years to come.
+                        </p>
+                    </motion.div>
                 </div>
 
+                {/* Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {outcomes.map((outcome, idx) => (
                         <OutcomeCard key={idx} {...outcome} delay={idx * 0.1} />
@@ -65,7 +80,7 @@ export default function ExpectedOutcomes() { // Changed to default export
 };
 
 // ----------------------------------------------------------------------
-// SUB-COMPONENTS
+// SUB-COMPONENT
 // ----------------------------------------------------------------------
 
 const OutcomeCard = ({ icon, title, desc, delay }: any) => (
@@ -74,12 +89,27 @@ const OutcomeCard = ({ icon, title, desc, delay }: any) => (
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay, duration: 0.5 }}
         viewport={{ once: true }}
-        className="bg-neutral-800 rounded-2xl p-8 border border-neutral-700 hover:border-amber-600/50 hover:bg-neutral-800/80 transition-all group"
+        whileHover={{ y: -5 }}
+        className="bg-[#151C18] border border-[#2C3E30] rounded-[2rem] p-8 md:p-10 hover:border-[#4F7A55] transition-all duration-300 group relative overflow-hidden"
     >
-        <div className="w-12 h-12 bg-neutral-700 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-600/20 transition-colors">
-            <div className="text-amber-500">{icon}</div>
+        {/* Hover Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#4F7A55]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+        {/* Icon */}
+        <div className="w-14 h-14 bg-[#1A241D] border border-[#2C3E30] rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#4F7A55] group-hover:border-[#4F7A55] transition-colors duration-300 relative z-10">
+            <div className="text-[#DDE5D7] group-hover:text-white transition-colors">
+                {icon}
+            </div>
         </div>
-        <h3 className="text-xl font-semibold text-white mb-3 font-syne">{title}</h3>
-        <p className="text-neutral-400 leading-relaxed font-inter">{desc}</p>
+
+        {/* Text */}
+        <div className="relative z-10">
+            <h3 className="text-xl font-bold text-white mb-3 font-syne group-hover:text-[#DDE5D7] transition-colors">
+                {title}
+            </h3>
+            <p className="text-[#8A8A8A] leading-relaxed font-inter text-sm">
+                {desc}
+            </p>
+        </div>
     </motion.div>
 );
