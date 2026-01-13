@@ -9,6 +9,13 @@ export default {
       xl: "1440px",
     },
     extend: {
+      // 👇 THIS IS THE MISSING PART
+      fontFamily: {
+        syne: ["Syne", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
+      },
+      // 👆 END OF ADDITION
+
       colors: {
         primary: "#1D6731",
         lightGreen: "#4CAF4F",
