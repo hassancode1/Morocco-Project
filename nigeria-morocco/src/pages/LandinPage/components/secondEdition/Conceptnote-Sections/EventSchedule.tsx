@@ -45,7 +45,6 @@ export default function EventSchedule() { // Changed to default export
                             "High-level Conference",
                             "B2B Meetings",
                             "Exhibition Hall",
-                            "Gala Night"
                         ]}
                         icon={<Building2 className="w-6 h-6" />}
                         variant="forest"
@@ -60,10 +59,9 @@ export default function EventSchedule() { // Changed to default export
                         venue="Bristol Palace Hotel"
                         theme="Agriculture & Agro-Industry"
                         activities={[
+                            "B2B Meetings",
                             "Farm & Dam Visits",
                             "Agro-processing Tour",
-                            "Emir's Palace Visit",
-                            "Cultural Dinner"
                         ]}
                         icon={<Factory className="w-6 h-6" />}
                         variant="sage"
@@ -80,8 +78,7 @@ export default function EventSchedule() { // Changed to default export
                         activities={[
                             "Award Ceremony",
                             "Government Roundtable",
-                            "Ministerial Summit",
-                            "Closing Remarks"
+                            "Closing Ceremoni"
                         ]}
                         icon={<Award className="w-6 h-6" />}
                         variant="charcoal"

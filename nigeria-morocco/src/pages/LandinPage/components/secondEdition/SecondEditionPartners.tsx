@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 const PARTNER_DATA = {
   auspices: {
     title: "The Nigeria Embassy, Rabat.",
-    sub: "Under the High Patronage of",
+    sub: "  UNDER THE AUSPICES OF",
     // src: "Embassy.png"
   },
   official: [
