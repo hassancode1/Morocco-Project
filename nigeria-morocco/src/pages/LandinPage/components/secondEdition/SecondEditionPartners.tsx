@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 // -------------------------------------------------------
-// Data: Partners (Now with Bilingual Support)
+// Data: Partners (Corrected Paths)
 // -------------------------------------------------------
 const PARTNER_DATA = {
   auspices: {
@@ -18,10 +18,10 @@ const PARTNER_DATA = {
       role: "Agro Industry",
       roleFr: "Agro-industrie",
       name: "FENAGRI",
-      // FENAGRI is a French acronym, so the description might be the same,
-      // or translated to English for the EN version.
       description: "National Agri-Food Federation",
       descriptionFr: "Fédération Nationale de l'Agroalimentaire",
+      // CORRECTED PATH: singular '/logo/'
+      logo: "/logo/3.png"
     },
     {
       role: "Agriculture",
@@ -29,6 +29,8 @@ const PARTNER_DATA = {
       name: "NIRSAL",
       description: "Incentive-Based Risk Sharing System",
       descriptionFr: "Système de partage des risques basé sur les incitations",
+      // CORRECTED PATH: singular '/logo/'
+      logo: "/logo/2.png"
     },
     {
       role: "Air Transport",
@@ -36,6 +38,8 @@ const PARTNER_DATA = {
       name: "Royal Air Maroc",
       description: "Official Carrier of the Business Week",
       descriptionFr: "Transporteur Officiel de la Semaine des Affaires",
+      // CORRECTED PATH: singular '/logo/'
+      logo: "/logo/1.png"
     },
   ],
   institutional: [
@@ -49,7 +53,7 @@ const PARTNER_DATA = {
     },
     {
       en: "CCISCS",
-      fr: "CCISCS" // Acronym usually stays the same
+      fr: "CCISCS"
     },
     {
       en: "Federal Ministry of Industry",
@@ -57,7 +61,6 @@ const PARTNER_DATA = {
     },
   ],
   strategic: [
-    // Company names usually remain in their original language
     { en: "Highland Integrated Electricity", fr: "Highland Integrated Electricity" },
     { en: "Jos Electricity Distribution", fr: "Jos Electricity Distribution" },
     { en: "Farm Creed", fr: "Farm Creed" },
@@ -80,7 +83,6 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
   ) => {
     const defaultValue =
         i18n.language === "fr" && frDefault ? frDefault : enDefault;
-    // We use the key if it exists in your json files, otherwise we fall back to the variables provided
     return t(key, { defaultValue });
   };
 
@@ -114,12 +116,11 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
                 )} <br />
                 <span className="text-[#2C3E30]">Rabat.</span>
               </h2>
-              {/* A decorative Sage divider */}
               <div className="w-32 h-1.5 bg-[#DDE5D7] mx-auto mt-10 rounded-full" />
             </motion.div>
           </div>
 
-          {/* --- TIER 2: OFFICIAL SPONSORS (Big, Bold Grid) --- */}
+          {/* --- TIER 2: OFFICIAL SPONSORS (Logos & Typography) --- */}
           <div className="mb-24">
             <div className="flex items-center gap-4 mb-12 border-b border-[#DDE5D7] pb-4">
               <span className="w-2 h-2 rounded-full bg-[#2C3E30]"></span>
@@ -136,7 +137,6 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
               {PARTNER_DATA.official.map((partner, index) => (
                   <TypographicCard
                       key={partner.name}
-                      // We resolve the translation HERE before passing it to the child
                       role={getTranslation(
                           `role_${partner.name}`,
                           partner.role,
@@ -148,13 +148,14 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
                           partner.description,
                           partner.descriptionFr
                       )}
+                      logo={partner.logo}
                       delay={0.1 * (index + 1)}
                   />
               ))}
             </div>
           </div>
 
-          {/* --- TIER 3: THE LISTS (Clean, Modern Lists) --- */}
+          {/* --- TIER 3: THE LISTS --- */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
             {/* Institutional Partners */}
             <div>
@@ -172,7 +173,6 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
                 {PARTNER_DATA.institutional.map((partner, idx) => (
                     <ListItem
                         key={idx}
-                        // Resolve translation based on current language state
                         text={i18n.language === 'fr' ? partner.fr : partner.en}
                         delay={idx * 0.1}
                     />
@@ -196,7 +196,6 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
                 {PARTNER_DATA.strategic.map((partner, idx) => (
                     <ListItem
                         key={idx}
-                        // Resolve translation based on current language state
                         text={i18n.language === 'fr' ? partner.fr : partner.en}
                         delay={idx * 0.1}
                     />
@@ -213,18 +212,20 @@ SecondEditionPartners.displayName = "SecondEditionPartners";
 export default SecondEditionPartners;
 
 // -------------------------------------------------------
-// Sub Components (Kept "Dumb" / Presentational)
+// Sub Components
 // -------------------------------------------------------
 
 const TypographicCard = ({
                            role,
                            name,
                            description,
+                           logo,
                            delay,
                          }: {
   role: string;
   name: string;
   description: string;
+  logo: string;
   delay: number;
 }) => (
     <motion.div
@@ -232,18 +233,39 @@ const TypographicCard = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: delay }}
-        whileHover={{ x: 10 }}
-        className="group cursor-pointer flex flex-col justify-between h-full border-l-2 border-[#DDE5D7] pl-8 hover:border-[#2C3E30] transition-colors duration-300"
+        whileHover={{ y: -5 }}
+        className="group cursor-pointer flex flex-col h-full bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-transparent hover:border-[#2C3E30]/10"
     >
-      <div>
-        <p className="text-xs font-bold text-[#2C3E30] mb-3 font-inter uppercase tracking-wide bg-[#E8F0E6] inline-block px-2 py-1 rounded-sm">
+      {/* Role Badge */}
+      <div className="mb-6">
+        <p className="text-[10px] font-bold text-[#2C3E30] font-inter uppercase tracking-wide bg-[#E8F0E6] inline-block px-3 py-1.5 rounded-full">
           {role}
         </p>
-        <h4 className="text-4xl md:text-5xl font-bold text-[#1A1A1A] mb-4 tracking-tighter font-syne group-hover:text-[#2C3E30] transition-colors">
+      </div>
+
+      {/* Logo & Name */}
+      <div className="flex-grow flex flex-col items-start gap-4 mb-4">
+        {/* Logo Container - Adjusted for better fit */}
+        <div className="h-16 w-full flex items-center justify-start overflow-hidden">
+          <img
+              src={logo}
+              alt={`${name} logo`}
+              className="h-full w-auto object-contain max-w-[150px] mix-blend-multiply"
+              // Add simple error handling to hide broken images
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+              }}
+          />
+        </div>
+
+        <h4 className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight font-syne group-hover:text-[#2C3E30] transition-colors">
           {name}
         </h4>
       </div>
-      <p className="text-sm text-[#4A4A4A] font-inter leading-relaxed max-w-xs">
+
+      {/* Description */}
+      <p className="text-sm text-[#4A4A4A] font-inter leading-relaxed border-t border-[#F0F2F0] pt-4 mt-auto">
         {description}
       </p>
     </motion.div>
@@ -257,10 +279,8 @@ const ListItem = ({ text, delay }: { text: string; delay: number }) => (
         transition={{ duration: 0.5, delay: delay }}
         className="flex items-center group cursor-default"
     >
-      {/* Animated Bullet Point */}
       <span className="w-1.5 h-1.5 bg-[#DDE5D7] rounded-full mr-4 group-hover:bg-[#2C3E30] group-hover:scale-150 transition-all duration-300" />
-
-      <span className="text-xl md:text-2xl font-medium text-[#1A1A1A] font-syne group-hover:translate-x-2 transition-transform duration-300">
+      <span className="text-lg md:text-xl font-medium text-[#1A1A1A] font-syne group-hover:translate-x-2 transition-transform duration-300">
       {text}
     </span>
     </motion.li>
