@@ -361,7 +361,7 @@ const Header = ({
                     )}
                 </div>
                 <h1 className="text-4xl md:text-8xl font-extrabold text-[#1A1A1A] tracking-tight leading-[0.9] font-syne">
-                    {getTranslation("unlocking", "Unlocking", "Débloquer")} <br />
+                <span className="text-[2rem]">  {getTranslation("unlocking", "Second Edition Nigeria Morocco", "Deuxième Édition Nigeria Maroc")}</span> <br />
                     <span className="text-[#2C3E30]">
             {getTranslation(
                 "businessweek",
@@ -410,7 +410,9 @@ const Header = ({
                         countdown.hours
                     }${getTranslation("h", "h", "h")} ${
                         countdown.minutes
-                    }${getTranslation("m", "m", "m")} ${getTranslation(
+                    }${getTranslation("m", "m", "m")} ${
+                        countdown.seconds
+                    }${getTranslation("s", "s", "s")} ${getTranslation(
                         "timeLeft",
                         "Left",
                         "Restant"

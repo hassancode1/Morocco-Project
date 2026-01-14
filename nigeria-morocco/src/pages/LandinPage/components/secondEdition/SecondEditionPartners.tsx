@@ -19,7 +19,7 @@ const PARTNER_DATA = {
       role: "Agro Industry",
       roleFr: "Agro-industrie",
       name: "FENAGRI",
-      description: "National Agri-Food Federation",
+      description: "official partner agro-industry ",
       descriptionFr: "Fédération Nationale de l'Agroalimentaire",
       logo: "/logo/3.png"
     },
@@ -27,7 +27,7 @@ const PARTNER_DATA = {
       role: "Agriculture",
       roleFr: "Agriculture",
       name: "NIRSAL",
-      description: "Incentive-Based Risk Sharing System",
+      description: " official partner Agriculture",
       descriptionFr: "Système de partage des risques basé sur les incitations",
       logo: "/logo/2.png"
     },
@@ -37,21 +37,33 @@ const PARTNER_DATA = {
     role: "Air Transport",
     roleFr: "Transport Aérien",
     name: "Royal Air Maroc",
-    description: "Official Carrier of the Business Week",
+    description: "official air transport sponsor",
     descriptionFr: "Transporteur Officiel de la Semaine des Affaires",
     logo: "/logo/1.png"
   },
   institutional: [
-    { en: "Ministry of Steel Development", fr: "Ministère du Développement de l'Acier" },
-    { en: "National Automotive Design Council", fr: "Conseil National du Design Automobile" },
-    { en: "CCISCS", fr: "CCISCS" },
-    { en: "Federal Ministry of Industry", fr: "Ministère Fédéral de l'Industrie" },
+    { en: "Ministry of Steel Development", fr: "Ministère du Développement de l'Acier", logo: "/MSD.jpg" },
+    { en: "National Automotive Design Council", fr: "Conseil National du Design Automobile", logo: "/NADDC.png" },
+    { en: "CCISCS", fr: "CCISCS", logo: "/cciscs.jpg" },
+    { en: "Federal Ministry of Industry", fr: "Ministère Fédéral de l'Industrie", logo: "/fmiti.png" },
   ],
   strategic: [
-    { en: "Highland Integrated Electricity", fr: "Highland Integrated Electricity" },
-    { en: "Jos Electricity Distribution", fr: "Jos Electricity Distribution" },
-    { en: "Farm Creed", fr: "Farm Creed" },
-    { en: "Spectre Trans-Trade Global", fr: "Spectre Trans-Trade Global" },
+    { en: "Highland Integrated Electricity", fr: "Highland Integrated Electricity", logo: "/HIESL.png" },
+    { en: "Jos Electricity Distribution", fr: "Jos Electricity Distribution", logo: "/jed.jpg" },
+    { en: "Farm Creed", fr: "Farm Creed", logo: "/farmcreed.jpg" },
+  ],
+  organizers: [
+    {
+      name: "Spectre Trans-Trade Global",
+      nameFr: "Spectre Trans-Trade Global",
+      logo: "/spectre.png"
+    },
+    {
+      name: "Concsima",
+      nameFr: "Concsima",
+      logo: "/concsima.png"
+    },
+   
   ],
 };
 
@@ -93,7 +105,9 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
             </motion.div>
           </div>
 
-          {/* --- TIER 2: OFFICIAL SPONSORS --- */}
+   
+
+          {/* --- TIER 3: OFFICIAL SPONSORS --- */}
           <div className="mb-24">
             <div className="flex items-center gap-4 mb-12 border-b border-[#DDE5D7] pb-4">
               <span className="w-2 h-2 rounded-full bg-[#2C3E30]"></span>
@@ -130,14 +144,39 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
               </div>
             </div>
           </div>
+                 {/* --- TIER 2: ORGANIZERS --- */}
+                 <div className="mb-24">
+            <div className="flex items-center gap-4 mb-12 border-b border-[#DDE5D7] pb-4">
+              <span className="w-2 h-2 rounded-full bg-[#2C3E30]"></span>
+              <h3 className="text-xs font-bold text-[#2C3E30] uppercase tracking-widest font-inter">
+                {getTranslation("organizersTitle", "Organizers", "Organisateurs")}
+              </h3>
+            </div>
 
-          {/* --- TIER 3: THE LISTS --- */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {PARTNER_DATA.organizers.map((organizer, index) => (
+                  <OrganizerCard
+                      key={organizer.name}
+                      name={i18n.language === 'fr' ? organizer.nameFr : organizer.name}
+                      logo={organizer.logo}
+                      delay={0.1 * (index + 1)}
+                  />
+              ))}
+            </div>
+          </div>
+
+          {/* --- TIER 4: THE LISTS --- */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
             <div>
               <ListHeader title={getTranslation("institutionalTitle", "Institutional Partners", "Partenaires Institutionnels")} />
               <ul className="space-y-6">
                 {PARTNER_DATA.institutional.map((p, idx) => (
-                    <ListItem key={idx} text={i18n.language === 'fr' ? p.fr : p.en} delay={idx * 0.1} />
+                    <ListItem 
+                        key={idx} 
+                        text={i18n.language === 'fr' ? p.fr : p.en} 
+                        logo={p.logo}
+                        delay={idx * 0.1} 
+                    />
                 ))}
               </ul>
             </div>
@@ -145,7 +184,12 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
               <ListHeader title={getTranslation("strategicTitle", "Strategic Partners", "Partenaires Stratégiques")} />
               <ul className="space-y-6">
                 {PARTNER_DATA.strategic.map((p, idx) => (
-                    <ListItem key={idx} text={i18n.language === 'fr' ? p.fr : p.en} delay={idx * 0.1} />
+                    <ListItem 
+                        key={idx} 
+                        text={i18n.language === 'fr' ? p.fr : p.en} 
+                        logo={p.logo}
+                        delay={idx * 0.1} 
+                    />
                 ))}
               </ul>
             </div>
@@ -199,18 +243,54 @@ const ListHeader = ({ title }: { title: string }) => (
     </div>
 );
 
-const ListItem = ({ text, delay }: { text: string; delay: number }) => (
+const OrganizerCard = ({ name, logo, delay }: { name: string; logo: string; delay: number }) => (
+    <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay }}
+        className="group flex flex-col bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all border border-transparent hover:border-[#2C3E30]/10"
+    >
+      <div className="mb-8 h-20 flex items-center justify-center">
+        <img
+            src={logo}
+            alt={name}
+            className="h-full w-auto object-contain mix-blend-multiply"
+            onError={(e) => (e.currentTarget.style.display = 'none')}
+        />
+      </div>
+      <div className="flex-grow text-center">
+        <h4 className="text-xl md:text-2xl font-bold text-[#1A1A1A] font-syne group-hover:text-[#2C3E30] transition-colors">
+          {name}
+        </h4>
+      </div>
+    </motion.div>
+);
+
+const ListItem = ({ text, logo, delay }: { text: string; logo?: string | null; delay: number }) => (
     <motion.li
         initial={{ opacity: 0, x: -10 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay }}
-        className="flex items-center group cursor-default"
+        className="group cursor-default"
     >
-      <span className="w-1.5 h-1.5 bg-[#DDE5D7] rounded-full mr-4 group-hover:bg-[#2C3E30] group-hover:scale-150 transition-all duration-300" />
-      <span className="text-lg md:text-xl font-medium text-[#1A1A1A] font-syne group-hover:translate-x-2 transition-transform duration-300">
-      {text}
-    </span>
+      <div className="flex items-center mb-3">
+        <span className="w-1.5 h-1.5 bg-[#DDE5D7] rounded-full mr-4 group-hover:bg-[#2C3E30] group-hover:scale-150 transition-all duration-300" />
+        <span className="text-lg md:text-xl font-medium text-[#1A1A1A] font-syne group-hover:translate-x-2 transition-transform duration-300">
+          {text}
+        </span>
+      </div>
+      {logo && (
+          <div className="ml-6 mt-3 h-16 flex items-center">
+            <img
+                src={logo}
+                alt={text}
+                className="h-full w-auto max-w-[200px] object-contain mix-blend-multiply opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                onError={(e) => (e.currentTarget.style.display = 'none')}
+            />
+          </div>
+      )}
     </motion.li>
 );
 
