@@ -2,11 +2,25 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Building2, Factory, Award, ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 // ----------------------------------------------------------------------
 // MAIN COMPONENT
 // ----------------------------------------------------------------------
-export default function EventSchedule() { // Changed to default export
+export default function EventSchedule() {
+    const { t, i18n } = useTranslation();
+
+    // Helper for translations
+    const getTranslation = (
+        key: string,
+        enDefault: string,
+        frDefault?: string
+    ) => {
+        const defaultValue =
+            i18n.language === "fr" && frDefault ? frDefault : enDefault;
+        return t(key, { defaultValue });
+    };
+
     return (
         <section className="py-24 md:py-32 bg-[#F9FBF9] relative">
             <div className="max-w-7xl mx-auto px-6">
@@ -16,15 +30,21 @@ export default function EventSchedule() { // Changed to default export
                     <div className="flex items-center gap-3 mb-6">
                         <span className="h-px w-8 bg-[#2C3E30]"></span>
                         <span className="text-[#2C3E30] font-bold tracking-[0.2em] text-sm uppercase font-inter">
-                            The Itinerary
+                            {getTranslation("itineraryTag", "The Itinerary", "L'Itinéraire")}
                         </span>
                     </div>
                     <h2 className="text-4xl md:text-6xl font-extrabold text-[#1A1A1A] font-syne leading-tight mb-6">
-                        Three Cities. <br />
-                        <span className="text-[#2C3E30]">Three Days.</span>
+                        {getTranslation("itineraryTitle1", "Three Cities.", "Trois Villes.")} <br />
+                        <span className="text-[#2C3E30]">
+                            {getTranslation("itineraryTitle2", "Three Days.", "Trois Jours.")}
+                        </span>
                     </h2>
                     <p className="text-lg text-[#4A4A4A] font-inter leading-relaxed max-w-xl">
-                        A strategic tour across Nigeria's economic powerhouses. From commerce in Lagos to agriculture in Kano, concluding with diplomacy in Abuja.
+                        {getTranslation(
+                            "itineraryDesc",
+                            "A strategic tour across Nigeria's economic powerhouses. From commerce in Lagos to agriculture in Kano, concluding with diplomacy in Abuja.",
+                            "Une tournée stratégique à travers les puissances économiques du Nigeria. Du commerce à Lagos à l'agriculture à Kano, pour finir par la diplomatie à Abuja."
+                        )}
                     </p>
                 </div>
 
@@ -36,16 +56,20 @@ export default function EventSchedule() { // Changed to default export
 
                     {/* LAGOS - Forest Green */}
                     <ProgrammeCard
-                        day="Day 01"
+                        day={getTranslation("day1", "Day 01", "Jour 01")}
                         city="Lagos"
-                        date="Feb 09, 2026"
+                        date={getTranslation("date1", "Feb 09, 2026", "09 Fév 2026")}
                         venue="Federal Palace Hotel"
-                        theme="Commerce & Networking"
+                        theme={getTranslation("theme1", "Commerce & Networking", "Commerce & Réseautage")}
                         activities={[
-                            "High-level Conference",
-                            "B2B Meetings",
-                            "Exhibition Hall",
+                            getTranslation("act1_1", "High-level Conference", "Conférence de Haut Niveau"),
+                            getTranslation("act1_2", "B2B Meetings", "Rencontres B2B"),
+                            getTranslation("act1_3", "Exhibition Hall", "Hall d'Exposition"),
                         ]}
+                        labels={{
+                            venue: getTranslation("lblVenue", "Venue", "Lieu"),
+                            activities: getTranslation("lblActivities", "Activities", "Activités")
+                        }}
                         icon={<Building2 className="w-6 h-6" />}
                         variant="forest"
                         delay={0.1}
@@ -53,16 +77,20 @@ export default function EventSchedule() { // Changed to default export
 
                     {/* KANO - Sage Green */}
                     <ProgrammeCard
-                        day="Day 02"
+                        day={getTranslation("day2", "Day 02", "Jour 02")}
                         city="Kano"
-                        date="Feb 10, 2026"
+                        date={getTranslation("date2", "Feb 10, 2026", "10 Fév 2026")}
                         venue="Bristol Palace Hotel"
-                        theme="Agriculture & Agro-Industry"
+                        theme={getTranslation("theme2", "Agriculture & Agro-Industry", "Agriculture & Agro-industrie")}
                         activities={[
-                            "B2B Meetings",
-                            "Farm & Dam Visits",
-                            "Agro-processing Tour",
+                            getTranslation("act2_1", "B2B Meetings", "Rencontres B2B"),
+                            getTranslation("act2_2", "Farm & Dam Visits", "Visites de Fermes et Barrages"),
+                            getTranslation("act2_3", "Agro-processing Tour", "Visite Agro-industrielle"),
                         ]}
+                        labels={{
+                            venue: getTranslation("lblVenue", "Venue", "Lieu"),
+                            activities: getTranslation("lblActivities", "Activities", "Activités")
+                        }}
                         icon={<Factory className="w-6 h-6" />}
                         variant="sage"
                         delay={0.2}
@@ -70,16 +98,20 @@ export default function EventSchedule() { // Changed to default export
 
                     {/* ABUJA - Charcoal */}
                     <ProgrammeCard
-                        day="Day 03"
+                        day={getTranslation("day3", "Day 03", "Jour 03")}
                         city="Abuja"
-                        date="Feb 11, 2026"
+                        date={getTranslation("date3", "Feb 11, 2026", "11 Fév 2026")}
                         venue="Abuja Continental Hotel"
-                        theme="Policy & Diplomacy"
+                        theme={getTranslation("theme3", "Policy & Diplomacy", "Politique & Diplomatie")}
                         activities={[
-                            "Award Ceremony",
-                            "Government Roundtable",
-                            "Closing Ceremoni"
+                            getTranslation("act3_1", "Award Ceremony", "Cérémonie de Remise de Prix"),
+                            getTranslation("act3_2", "Government Roundtable", "Table Ronde Gouvernementale"),
+                            getTranslation("act3_3", "Closing Ceremony", "Cérémonie de Clôture")
                         ]}
+                        labels={{
+                            venue: getTranslation("lblVenue", "Venue", "Lieu"),
+                            activities: getTranslation("lblActivities", "Activities", "Activités")
+                        }}
                         icon={<Award className="w-6 h-6" />}
                         variant="charcoal"
                         delay={0.3}
@@ -91,7 +123,8 @@ export default function EventSchedule() { // Changed to default export
                 <div className="mt-20 flex justify-center">
                     <button className="group relative px-8 py-4 bg-[#1A1A1A] text-white font-bold rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 shadow-xl font-syne">
                         <span className="relative z-10 flex items-center gap-2">
-                            Download Full Agenda <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            {getTranslation("downloadAgenda", "Download Full Agenda", "Télécharger l'Agenda Complet")}
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </span>
                         {/* Hover fill effect */}
                         <div className="absolute inset-0 bg-[#2C3E30] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
@@ -114,12 +147,14 @@ interface ProgrammeCardProps {
     venue: string;
     theme: string;
     activities: string[];
+    // Added labels prop to pass translated headers down
+    labels: { venue: string; activities: string };
     icon: React.ReactNode;
     variant: "forest" | "sage" | "charcoal";
     delay: number;
 }
 
-const ProgrammeCard = ({ day, city, date, venue, activities, icon, variant, delay }: ProgrammeCardProps) => {
+const ProgrammeCard = ({ day, city, date, venue, activities, labels, icon, variant, delay }: ProgrammeCardProps) => {
 
     // Style configurations based on variant
     const styles = {
@@ -189,7 +224,9 @@ const ProgrammeCard = ({ day, city, date, venue, activities, icon, variant, dela
 
             <div className="space-y-6">
                 <div>
-                    <p className={`text-xs font-bold uppercase tracking-widest mb-2 opacity-60 font-inter`}>Venue</p>
+                    <p className={`text-xs font-bold uppercase tracking-widest mb-2 opacity-60 font-inter`}>
+                        {labels.venue}
+                    </p>
                     <div className="flex items-center gap-2 font-medium">
                         <MapPin className="w-4 h-4" />
                         <span>{venue}</span>
@@ -197,7 +234,9 @@ const ProgrammeCard = ({ day, city, date, venue, activities, icon, variant, dela
                 </div>
 
                 <div>
-                    <p className={`text-xs font-bold uppercase tracking-widest mb-2 opacity-60 font-inter`}>Activities</p>
+                    <p className={`text-xs font-bold uppercase tracking-widest mb-2 opacity-60 font-inter`}>
+                        {labels.activities}
+                    </p>
                     <ul className="space-y-3">
                         {activities.map((activity, idx) => (
                             <li key={idx} className="flex items-start gap-3 text-sm font-inter leading-relaxed">

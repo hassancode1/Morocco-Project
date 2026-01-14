@@ -11,11 +11,25 @@ import {
     Factory,
     Globe // Used for Joint Ventures
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 // ----------------------------------------------------------------------
 // MAIN COMPONENT
 // ----------------------------------------------------------------------
 export default function StrategicObjectives() {
+    const { t, i18n } = useTranslation();
+
+    // Helper for translations
+    const getTranslation = (
+        key: string,
+        enDefault: string,
+        frDefault?: string
+    ) => {
+        const defaultValue =
+            i18n.language === "fr" && frDefault ? frDefault : enDefault;
+        return t(key, { defaultValue });
+    };
+
     return (
         <section className="py-32 bg-[#0D1210] text-white relative overflow-hidden">
 
@@ -33,14 +47,18 @@ export default function StrategicObjectives() {
                         transition={{ duration: 0.7 }}
                     >
                         <span className="text-[#DDE5D7] font-bold tracking-[0.2em] text-sm uppercase mb-4 block font-inter">
-                            Strategic Objectives
+                            {getTranslation("stratObjTag", "Strategic Objectives", "Objectifs Stratégiques")}
                         </span>
                         <h2 className="text-4xl md:text-6xl font-extrabold leading-[1.1] mb-6 font-syne text-white">
-                            Building on the <br />
-                            Momentum of <span className="text-[#4F7A55]">Casablanca.</span>
+                            {getTranslation("stratObjTitle", "Building on the", "S'appuyer sur")} <br />
+                            {getTranslation("stratObjTitle2", "Momentum of", "l'élan de")} <span className="text-[#4F7A55]">Casablanca.</span>
                         </h2>
                         <p className="text-[#8A8A8A] text-lg md:text-xl leading-relaxed font-inter max-w-2xl">
-                            We are providing a dynamic, action-oriented platform to foster joint investments and unlock trade across key sectors.
+                            {getTranslation(
+                                "stratObjDesc",
+                                "We are providing a dynamic, action-oriented platform to foster joint investments and unlock trade across key sectors.",
+                                "Nous offrons une plateforme dynamique et orientée vers l'action pour favoriser les investissements conjoints et débloquer le commerce dans des secteurs clés."
+                            )}
                         </p>
                     </motion.div>
                 </div>
@@ -48,16 +66,24 @@ export default function StrategicObjectives() {
                 {/* --- PART 1: THE BIG NUMBERS (Financial Impact) --- */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
                     <StatCard
-                        value="$10 Billion"
-                        label="Annual Trade Potential"
-                        description="Bilateral trade between Nigeria and Morocco holds the potential to exceed this milestone annually."
+                        value={getTranslation("tradeVolVal", "$10 Billion", "10 Milliards $")}
+                        label={getTranslation("tradeVolLabel", "Annual Trade Potential", "Potentiel Commercial Annuel")}
+                        description={getTranslation(
+                            "tradeVolDesc",
+                            "Bilateral trade between Nigeria and Morocco holds the potential to exceed this milestone annually.",
+                            "Le commerce bilatéral entre le Nigeria et le Maroc a le potentiel de dépasser ce cap annuellement."
+                        )}
                         icon={<TrendingUp className="w-8 h-8 text-[#DDE5D7]" />}
                         delay={0.1}
                     />
                     <StatCard
-                        value="$7 Billion"
-                        label="Agriculture Trade Value"
-                        description="Agriculture and agri-products alone are projected to contribute approximately $7 billion to the economy."
+                        value={getTranslation("agriVal", "$7 Billion", "7 Milliards $")}
+                        label={getTranslation("agriLabel", "Agriculture Trade Value", "Valeur du Commerce Agricole")}
+                        description={getTranslation(
+                            "agriDesc",
+                            "Agriculture and agri-products alone are projected to contribute approximately $7 billion to the economy.",
+                            "L'agriculture et les produits agroalimentaires devraient contribuer à eux seuls à environ 7 milliards de dollars à l'économie."
+                        )}
                         icon={<Sprout className="w-8 h-8 text-[#DDE5D7]" />}
                         delay={0.2}
                     />
@@ -66,7 +92,13 @@ export default function StrategicObjectives() {
                 {/* --- PART 2: THE ACTION GRID (Policy & Implementation) --- */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
                     {objectives.map((obj, index) => (
-                        <ObjectiveCard key={index} {...obj} delay={0.3 + (index * 0.1)} />
+                        <ObjectiveCard
+                            key={index}
+                            title={getTranslation(`objTitle_${index}`, obj.title, obj.titleFr)}
+                            desc={getTranslation(`objDesc_${index}`, obj.desc, obj.descFr)}
+                            icon={obj.icon}
+                            delay={0.3 + (index * 0.1)}
+                        />
                     ))}
                 </div>
 
@@ -76,38 +108,50 @@ export default function StrategicObjectives() {
 };
 
 // ----------------------------------------------------------------------
-// DATA & SUB-COMPONENTS (Kept in same file for modularity)
+// DATA & SUB-COMPONENTS
 // ----------------------------------------------------------------------
 
 const objectives = [
     {
         title: "Deepen Relations",
+        titleFr: "Approfondir les Relations",
         desc: "Strengthen bilateral trade and economic relations through actionable partnerships.",
+        descFr: "Renforcer le commerce bilatéral et les relations économiques grâce à des partenariats concrets.",
         icon: <Handshake className="w-6 h-6" />,
     },
     {
         title: "Raw Material Access",
+        titleFr: "Accès aux Matières Premières",
         desc: "Facilitate access to Nigerian raw materials and consumer markets for Moroccan industries.",
+        descFr: "Faciliter l'accès aux matières premières nigérianes et aux marchés de consommation pour les industries marocaines.",
         icon: <Factory className="w-6 h-6" />,
     },
     {
         title: "Joint Ventures",
+        titleFr: "Coentreprises",
         desc: "Promote localization of Moroccan businesses in Nigeria, specifically in agri-processing and solar.",
+        descFr: "Promouvoir la localisation d'entreprises marocaines au Nigeria, spécifiquement dans l'agro-transformation et le solaire.",
         icon: <Globe className="w-6 h-6" />,
     },
     {
         title: "Policy Alignment",
+        titleFr: "Alignement des Politiques",
         desc: "Address tariffs, certification, and logistics through the AfCFTA framework.",
+        descFr: "Aborder les tarifs, la certification et la logistique via le cadre de la ZLECAf.",
         icon: <Scale className="w-6 h-6" />,
     },
     {
         title: "Maritime Corridor",
+        titleFr: "Corridor Maritime",
         desc: "Establish a direct sea lane between Lagos and Moroccan ports to reduce transit time and cost.",
+        descFr: "Établir une voie maritime directe entre Lagos et les ports marocains pour réduire le temps et le coût de transit.",
         icon: <Anchor className="w-6 h-6" />,
     },
     {
         title: "Investment Council",
+        titleFr: "Conseil d'Investissement",
         desc: "Launch a new joint Trade and Investment Council for continuous networking.",
+        descFr: "Lancer un nouveau Conseil conjoint du Commerce et de l'Investissement pour un réseautage continu.",
         icon: <Users className="w-6 h-6" />,
     },
 ];

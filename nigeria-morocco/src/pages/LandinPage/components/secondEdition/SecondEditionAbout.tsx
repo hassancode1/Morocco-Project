@@ -6,7 +6,18 @@ import { motion } from "framer-motion";
 import { ArrowRight, Info, MapPin } from "lucide-react";
 
 const SecondEditionAbout: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  // Helper for translations
+  const getTranslation = (
+      key: string,
+      enDefault: string,
+      frDefault?: string
+  ) => {
+    const defaultValue =
+        i18n.language === "fr" && frDefault ? frDefault : enDefault;
+    return t(key, { defaultValue });
+  };
 
   return (
       <section id="about" className="py-24 px-6 bg-[#F0F5F1] relative overflow-hidden">
@@ -47,15 +58,23 @@ const SecondEditionAbout: React.FC = () => {
               {/* Tag */}
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#DDE5D7] text-[#4F7A55] text-xs font-bold uppercase tracking-widest mb-8 shadow-sm">
                 <Info className="w-4 h-4" />
-                <span>About The Summit</span>
+                <span>
+                    {getTranslation("aboutTag", "About The Summit", "À Propos du Sommet")}
+                </span>
               </div>
 
               <h1 className="text-3xl md:text-5xl font-extrabold text-[#1A1A1A] font-syne mb-8 leading-tight">
-                {t("newsHeader1")}
+                {getTranslation("newsHeader1", "Bridging Markets, Building the Future.", "Relier les Marchés, Construire l'Avenir.")}
               </h1>
 
               <div className="space-y-6 text-[#5A5A5A] font-inter text-lg leading-relaxed">
-                <p>{t("newsBody1")}</p>
+                <p>
+                  {getTranslation(
+                      "newsBody1",
+                      "The 2nd Edition of the Nigeria-Morocco Business Week is a pivotal platform designed to foster high-level economic dialogue between our two nations.",
+                      "La 2ème édition de la Semaine des Affaires Nigeria-Maroc est une plateforme pivot conçue pour favoriser un dialogue économique de haut niveau entre nos deux nations."
+                  )}
+                </p>
 
                 {/* Special Venue Highlight - Light Version */}
                 <div className="flex items-start gap-3 p-5 bg-white border border-[#E0E7E0] rounded-xl shadow-sm">
@@ -63,19 +82,37 @@ const SecondEditionAbout: React.FC = () => {
                     <MapPin className="text-[#4F7A55] w-6 h-6 flex-shrink-0" />
                   </div>
                   <div>
-                    <span className="text-[#1A1A1A] font-bold block mb-1">{t("venue")}:</span>
-                    <span className="text-[#5A5A5A]">Lagos, Kano and Abuja (Nigeria).</span>
+                    <span className="text-[#1A1A1A] font-bold block mb-1">
+                        {getTranslation("venueLabel", "Venue:", "Lieu :")}
+                    </span>
+                    <span className="text-[#5A5A5A]">
+                         {/*  - Visualizing these three distinct locations reinforces the scale of the summit */}
+                      {getTranslation("venueList", "Lagos, Kano and Abuja (Nigeria).", "Lagos, Kano et Abuja (Nigeria).")}
+                    </span>
                   </div>
                 </div>
 
-                <p>{t("news1Body2")}</p>
-                <p>{t("news1Body3")}</p>
+                <p>
+                  {getTranslation(
+                      "news1Body2",
+                      "Gathering industry leaders, policymakers, and investors, this summit aims to unlock new trade corridors and investment opportunities in agriculture, energy, and technology.",
+                      "Rassemblant des leaders de l'industrie, des décideurs politiques et des investisseurs, ce sommet vise à ouvrir de nouveaux corridors commerciaux et des opportunités d'investissement."
+                  )}
+                </p>
+                <p>
+                  {getTranslation(
+                      "news1Body3",
+                      "Join us as we explore synergies and set the roadmap for bilateral prosperity.",
+                      "Rejoignez-nous pour explorer les synergies et définir la feuille de route de la prospérité bilatérale."
+                  )}
+                </p>
               </div>
 
               {/* Button - Solid Green for contrast */}
               <button className="mt-10 group relative px-8 py-4 bg-[#4F7A55] text-white font-bold rounded-full overflow-hidden hover:scale-105 hover:shadow-xl hover:shadow-[#4F7A55]/20 transition-all duration-300 font-syne">
                 <span className="relative z-10 flex items-center gap-2">
-                    {t("learn")} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    {getTranslation("learnBtn", "Read Full Overview", "Lire l'Aperçu Complet")}
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </button>
             </motion.div>

@@ -10,7 +10,7 @@ import {
 import { useTranslation } from "react-i18next";
 
 // -------------------------------------------------------
-// Interfaces (Preserved from Old Code)
+// Interfaces
 // -------------------------------------------------------
 interface Props {
     onRegister: () => void;
@@ -25,96 +25,119 @@ interface Countdown {
     label: string;
 }
 
+interface ConferenceItem {
+    title: string;
+    titleFr: string; // Added for translation
+    description?: string;
+    thumbnail: string;
+    link?: string;
+}
+
 // -------------------------------------------------------
-// Data: Curated High-Res Imagery for Nigeria-Morocco
+// Data: Curated High-Res Imagery (With French Titles added)
 // -------------------------------------------------------
-const conferenceItems = [
+const conferenceItems: ConferenceItem[] = [
     {
         title: "Noor Solar Plant",
+        titleFr: "Centrale Solaire Noor",
         thumbnail:
             "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=1200&auto=format&fit=crop",
         link: "#",
     },
     {
         title: "Agriculture in Kano",
+        titleFr: "Agriculture à Kano",
         thumbnail:
             "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?q=80&w=1200&auto=format&fit=crop",
         link: "#",
     },
     {
         title: "Lagos Commercial Hub",
+        titleFr: "Hub Commercial de Lagos",
         thumbnail:
-            "https://images.unsplash.com/photo-1707008797390-38f13ea40163?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1707008797390-38f13ea40163?q=80&w=1364&auto=format&fit=crop",
         link: "#",
     },
     {
         title: "Abuja Diplomacy",
+        titleFr: "Diplomatie à Abuja",
         thumbnail:
-            "https://images.unsplash.com/photo-1721642472312-cd30e9bd7cac?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QWJ1amF8ZW58MHx8MHx8fDA%3D",
+            "https://images.unsplash.com/photo-1721642472312-cd30e9bd7cac?w=900&auto=format&fit=crop",
         link: "#",
     },
     {
         title: "Solid Minerals",
+        titleFr: "Minéraux Solides",
         thumbnail:
-            "https://images.unsplash.com/photo-1625479610681-f789345a8157?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1pbmVyYWxzfGVufDB8fDB8fHww",
+            "https://images.unsplash.com/photo-1625479610681-f789345a8157?w=900&auto=format&fit=crop",
         link: "#",
     },
     {
         title: "Maritime Corridor",
+        titleFr: "Corridor Maritime",
         thumbnail:
-            "https://images.unsplash.com/photo-1577044633072-27e87e4de579?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fE1hcml0aW1lJTIwQ29ycmlkb3J8ZW58MHx8MHx8fDA%3D",
+            "https://images.unsplash.com/photo-1577044633072-27e87e4de579?w=900&auto=format&fit=crop",
         link: "#",
     },
     {
         title: "Fertilizers & Phosphates",
+        titleFr: "Engrais et Phosphates",
         thumbnail:
-            "https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8RmVydGlsaXplcnMlMjAlMjYlMjBQaG9zcGhhdGVzfGVufDB8fDB8fHww",
+            "https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?w=900&auto=format&fit=crop",
         link: "#",
     },
     {
         title: "Digital Economy",
+        titleFr: "Économie Numérique",
         thumbnail:
             "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=1200&auto=format&fit=crop",
         link: "#",
     },
     {
         title: "Textiles & Cotton",
+        titleFr: "Textiles et Coton",
         thumbnail:
-            "https://images.unsplash.com/photo-1766320635268-a7bd54ffb3d9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHRleHRpbGVzJTIwYW5kJTIwY290dG9ufGVufDB8fDB8fHww",
+            "https://images.unsplash.com/photo-1766320635268-a7bd54ffb3d9?w=900&auto=format&fit=crop",
         link: "#",
     },
     {
         title: "Tourism & Culture",
+        titleFr: "Tourisme et Culture",
         thumbnail:
             "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?q=80&w=1200&auto=format&fit=crop",
         link: "#",
     },
     {
         title: "B2B Engagements",
+        titleFr: "Engagements B2B",
         thumbnail:
             "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1200&auto=format&fit=crop",
         link: "#",
     },
     {
         title: "Banking & Finance",
+        titleFr: "Banque et Finance",
         thumbnail:
             "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop",
         link: "#",
     },
     {
         title: "The $10B Target",
+        titleFr: "L'Objectif de 10 Mrd $",
         thumbnail:
             "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
         link: "#",
     },
     {
         title: "Agro-Processing",
+        titleFr: "Agro-industrie",
         thumbnail:
             "https://images.unsplash.com/photo-1535090467336-9501f96eef89?q=80&w=1200&auto=format&fit=crop",
         link: "#",
     },
     {
         title: "Closing Awards",
+        titleFr: "Cérémonie de Clôture",
         thumbnail:
             "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200&auto=format&fit=crop",
         link: "#",
@@ -132,7 +155,7 @@ const SecondEditionHero: React.FC<Props> = ({
                                             }) => {
     const { t, i18n } = useTranslation();
 
-    // Helper for translations (Preserved from Old Code)
+    // Helper for translations
     const getTranslation = (
         key: string,
         enDefault: string,
@@ -143,7 +166,6 @@ const SecondEditionHero: React.FC<Props> = ({
         return t(key, { defaultValue });
     };
 
-    // Countdown Logic (Preserved from Old Code)
     const [countdown, setCountdown] = useState<Countdown>({
         days: "0",
         hours: "0",
@@ -162,7 +184,7 @@ const SecondEditionHero: React.FC<Props> = ({
                     hours: "0",
                     minutes: "0",
                     seconds: "0",
-                    label: "Event Started!",
+                    label: "started", // Simplified key for translation
                 });
                 clearInterval(interval);
                 return;
@@ -182,7 +204,6 @@ const SecondEditionHero: React.FC<Props> = ({
         return () => clearInterval(interval);
     }, []);
 
-    // Pass data and logic down to the visual layout
     return (
         <HeroParallax
             items={conferenceItems}
@@ -197,7 +218,7 @@ const SecondEditionHero: React.FC<Props> = ({
 export default SecondEditionHero;
 
 // -------------------------------------------------------
-// Visual Components (New Design Implementation)
+// Visual Components
 // -------------------------------------------------------
 
 const HeroParallax = ({
@@ -207,12 +228,7 @@ const HeroParallax = ({
                           onRegister,
                           onScrollToPartners,
                       }: {
-    items: {
-        title: string;
-        description?: string;
-        thumbnail: string;
-        link?: string;
-    }[];
+    items: ConferenceItem[];
     countdown: Countdown;
     getTranslation: (key: string, en: string, fr?: string) => string;
     onRegister: () => void;
@@ -231,7 +247,6 @@ const HeroParallax = ({
     const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
 
     const gradientOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-
     const translateX = useSpring(
         useTransform(scrollYProgress, [0, 1], [0, 800]),
         springConfig
@@ -267,7 +282,6 @@ const HeroParallax = ({
                 className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-[#F9FBF9] via-[#F9FBF9] to-transparent w-full md:w-[70%]"
             />
 
-            {/* Header receives the Logic/Event Handlers */}
             <Header
                 countdown={countdown}
                 getTranslation={getTranslation}
@@ -289,6 +303,7 @@ const HeroParallax = ({
                             item={item}
                             translate={translateX}
                             scrollYProgress={scrollYProgress}
+                            getTranslation={getTranslation} // Passing translation down
                             key={item.title}
                         />
                     ))}
@@ -299,6 +314,7 @@ const HeroParallax = ({
                             item={item}
                             translate={translateXReverse}
                             scrollYProgress={scrollYProgress}
+                            getTranslation={getTranslation}
                             key={item.title}
                         />
                     ))}
@@ -309,6 +325,7 @@ const HeroParallax = ({
                             item={item}
                             translate={translateX}
                             scrollYProgress={scrollYProgress}
+                            getTranslation={getTranslation}
                             key={item.title}
                         />
                     ))}
@@ -337,24 +354,32 @@ const Header = ({
                 transition={{ duration: 0.8 }}
             >
                 <div className="inline-block mb-4 px-4 py-1.5 rounded-full border border-[#DDE5D7] bg-[#E8F0E6] text-[#2C3E30] text-sm font-bold tracking-wide font-inter">
-                    🇳🇬 NIGERIA-MOROCCO 🇲🇦
+                    {getTranslation(
+                        "countryBadge",
+                        "🇳🇬 NIGERIA-MOROCCO 🇲🇦",
+                        "🇳🇬 NIGERIA-MAROC 🇲🇦"
+                    )}
                 </div>
                 <h1 className="text-4xl md:text-8xl font-extrabold text-[#1A1A1A] tracking-tight leading-[0.9] font-syne">
-                    {/* We use translation here if you have keys for it, or keep the new english text */}
-                    Unlocking <br />
+                    {getTranslation("unlocking", "Unlocking", "Débloquer")} <br />
                     <span className="text-[#2C3E30]">
-            {getTranslation("businessweek", "Business Week", "Semaine des affaires")}
+            {getTranslation(
+                "businessweek",
+                "Business Week",
+                "La Semaine des Affaires"
+            )}
           </span>
                 </h1>
                 <p className="max-w-xl text-base md:text-xl mt-8 text-[#4A4A4A] font-inter leading-relaxed">
           <span className="text-black font-bold">
-            {getTranslation("edition", "2nd Edition", "2ème édition")}
-          </span>
-                    {" "}- {getTranslation(
-                    "slide2Body",
-                    "Building stronger economic ties between Nigeria and Morocco through strategic partnerships.",
-                    "Construire des liens économiques plus forts entre le Nigeria et le Maroc."
-                )}
+            {getTranslation("edition", "2nd Edition", "2ème Édition")}
+          </span>{" "}
+                    -{" "}
+                    {getTranslation(
+                        "heroDescription",
+                        "Building stronger economic ties between Nigeria and Morocco through strategic partnerships.",
+                        "Renforcer les liens économiques entre le Nigeria et le Maroc grâce à des partenariats stratégiques."
+                    )}
                 </p>
 
                 <div className="mt-10 flex flex-wrap gap-6 items-center">
@@ -362,25 +387,40 @@ const Header = ({
                         onClick={onRegister}
                         className="px-8 py-4 bg-[#2C3E30] text-[#F9FBF9] rounded-xl font-bold hover:bg-[#1a261d] transition-all transform hover:scale-105 shadow-xl shadow-green-900/20"
                     >
-                        {getTranslation("Participate", "Register Now", "Obtenez Votre Badge")}
+                        {getTranslation(
+                            "registerBtn",
+                            "Register Now",
+                            "Obtenez Votre Badge"
+                        )}
                     </button>
 
                     <button
                         onClick={onScrollToPartners}
                         className="px-6 py-4 bg-transparent border border-[#2C3E30] text-[#2C3E30] rounded-xl font-bold hover:bg-[#2C3E30] hover:text-[#F9FBF9] transition-all"
                     >
-                        {getTranslation("learn", "Learn More", "En savoir plus")}
+                        {getTranslation("learnBtn", "Learn More", "En Savoir Plus")}
                     </button>
 
                     <div className="flex flex-col border-l-2 border-[#DDE5D7] pl-6">
             <span className="text-xs uppercase tracking-[0.2em] text-[#8A8A8A] font-bold">
-              {countdown.days}d {countdown.hours}h {countdown.minutes}m Left
+              {/* Special handling for countdown text mixing dynamic numbers and static text */}
+                {countdown.label === "started"
+                    ? getTranslation("eventStarted", "Event Started!", "L'événement a commencé!")
+                    : `${countdown.days}${getTranslation("d", "d", "j")} ${
+                        countdown.hours
+                    }${getTranslation("h", "h", "h")} ${
+                        countdown.minutes
+                    }${getTranslation("m", "m", "m")} ${getTranslation(
+                        "timeLeft",
+                        "Left",
+                        "Restant"
+                    )}`}
             </span>
                         <span className="text-sm font-bold text-[#1A1A1A]">
               {getTranslation(
                   "heroEventDate",
                   "Feb 9 - 11, 2026",
-                  "9-11 février 2026"
+                  "9-11 Février 2026"
               )}
             </span>
                     </div>
@@ -394,19 +434,19 @@ const GalleryCard = ({
                          item,
                          translate,
                          scrollYProgress,
+                         getTranslation,
                      }: {
-    item: {
-        title: string;
-        description?: string;
-        thumbnail: string;
-        link?: string;
-    };
+    item: ConferenceItem;
     translate: MotionValue<number>;
     scrollYProgress: MotionValue<number>;
+    getTranslation: (key: string, en: string, fr?: string) => string;
 }) => {
     const textOpacity = useTransform(scrollYProgress, [0.05, 0.18], [0, 1]);
     const textY = useTransform(scrollYProgress, [0.05, 0.18], [30, 0]);
     const overlayOpacity = useTransform(scrollYProgress, [0.05, 0.18], [0, 0.7]);
+
+    // Create a unique key for the title based on the English string (lowercase, simplified)
+    const titleKey = item.title.toLowerCase().replace(/\s+/g, "_");
 
     return (
         <motion.div
@@ -431,7 +471,8 @@ const GalleryCard = ({
                 className="absolute bottom-0 left-0 p-8 text-white w-full"
             >
                 <h2 className="text-xl font-bold mb-1 font-syne leading-tight">
-                    {item.title}
+                    {/* Using the pattern here for dynamic items */}
+                    {getTranslation(titleKey, item.title, item.titleFr)}
                 </h2>
                 {item.description && (
                     <p className="text-xs text-[#E8F0E6] font-inter uppercase tracking-widest font-medium">

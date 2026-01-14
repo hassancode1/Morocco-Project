@@ -5,29 +5,56 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ArrowUpRight, MapPin } from "lucide-react";
 
-const newsItems = [
-  {
-    image: "lagos.jpg",
-    alt: "lagos",
-    titleKey: "newsHeader2",
-    bodyKey: "newsBody2",
-  },
-  {
-    image: "kano.webp",
-    alt: "kano",
-    titleKey: "newsHeader3",
-    bodyKey: "newsBody3",
-  },
-  {
-    image: "abuja.jpg",
-    alt: "abuja",
-    titleKey: "newsHeader4",
-    bodyKey: "newsBody4",
-  },
-];
-
 const SecondEditionNews: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  // Helper for translations
+  const getTranslation = (
+      key: string,
+      enDefault: string,
+      frDefault?: string
+  ) => {
+    const defaultValue =
+        i18n.language === "fr" && frDefault ? frDefault : enDefault;
+    return t(key, { defaultValue });
+  };
+
+  // Data moved inside component to access state/translation logic
+  const newsItems = [
+    {
+      //
+      image: "lagos.jpg",
+      alt: "Lagos",
+      title: getTranslation("newsHeader2", "Lagos: The Commercial Nerve Center", "Lagos : Le Centre Névralgique Commercial"),
+      body: getTranslation(
+          "newsBody2",
+          "Experience the vibrant energy of Nigeria's economic capital. Engage with top-tier financial institutions and tech giants driving West Africa's growth.",
+          "Découvrez l'énergie vibrante de la capitale économique du Nigeria. Échangez avec des institutions financières de premier plan et des géants de la technologie."
+      ),
+    },
+    {
+      //
+      image: "kano.webp",
+      alt: "Kano",
+      title: getTranslation("newsHeader3", "Kano: The Industrial & Agricultural Hub", "Kano : Le Pôle Industriel & Agricole"),
+      body: getTranslation(
+          "newsBody3",
+          "Unlock opportunities in the heart of Northern Nigeria. Focus on agro-processing, textile industries, and cross-border trade routes.",
+          "Débloquez des opportunités au cœur du nord du Nigeria. Concentrez-vous sur l'agro-industrie, le textile et les routes commerciales transfrontalières."
+      ),
+    },
+    {
+      //
+      image: "abuja.jpg",
+      alt: "Abuja",
+      title: getTranslation("newsHeader4", "Abuja: The Seat of Power & Policy", "Abuja : Le Siège du Pouvoir & de la Politique"),
+      body: getTranslation(
+          "newsBody4",
+          "Conclude the tour where decisions are made. Participate in high-level government roundtables and diplomatic networking sessions.",
+          "Concluez la tournée là où les décisions sont prises. Participez à des tables rondes gouvernementales de haut niveau et à des sessions de réseautage diplomatique."
+      ),
+    },
+  ];
 
   return (
       <section id="news" className="py-24 px-6 bg-white relative">
@@ -37,12 +64,12 @@ const SecondEditionNews: React.FC = () => {
           <div className="w-full h-px bg-[#E5EBE5] mb-20" />
 
           <div className="space-y-24">
-            {newsItems.map(({ image, alt, titleKey, bodyKey }, index) => {
+            {newsItems.map(({ image, alt, title, body }, index) => {
               const isEven = index % 2 === 0;
 
               return (
                   <motion.div
-                      key={titleKey}
+                      key={index}
                       initial={{ opacity: 0, y: 50 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
@@ -78,10 +105,10 @@ const SecondEditionNews: React.FC = () => {
                             </span>
 
                       <h2 className="text-3xl md:text-4xl font-bold text-[#1A1A1A] font-syne mb-6">
-                        {t(titleKey)}
+                        {title}
                       </h2>
                       <p className="text-[#5A5A5A] font-inter leading-relaxed text-lg mb-8 text-justify">
-                        {t(bodyKey)}
+                        {body}
                       </p>
 
                       <a
@@ -90,7 +117,7 @@ const SecondEditionNews: React.FC = () => {
                           href="https://spectretranstradeglobal.com"
                           className="inline-flex items-center gap-2 text-[#4F7A55] font-bold font-syne uppercase tracking-widest border-b-2 border-[#4F7A55]/20 pb-1 hover:border-[#4F7A55] transition-all group"
                       >
-                        {t("learn")}
+                        {getTranslation("learnMore", "Learn More", "En Savoir Plus")}
                         <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                       </a>
                     </div>

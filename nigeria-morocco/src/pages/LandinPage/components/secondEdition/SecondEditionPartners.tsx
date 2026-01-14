@@ -1,49 +1,67 @@
 "use client";
-import  { forwardRef } from "react";
+import { forwardRef } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 // -------------------------------------------------------
-// Data Preservation (Mapped from Old Code)
+// Data: Partners (Now with Bilingual Support)
 // -------------------------------------------------------
-// We keep the image paths handy in case you want to add them back later,
-// but for now, we are using the Text/Typographic style of the new design.
 const PARTNER_DATA = {
   auspices: {
     title: "The Nigeria Embassy, Rabat.",
-    sub: "  UNDER THE AUSPICES OF",
-    // src: "Embassy.png"
+    titleFr: "L'Ambassade du Nigeria, Rabat.",
+    sub: "UNDER THE AUSPICES OF",
+    subFr: "SOUS L'ÉGIDE DE",
   },
   official: [
     {
       role: "Agro Industry",
+      roleFr: "Agro-industrie",
       name: "FENAGRI",
-      description: "Fédération Nationale de l'Agroalimentaire",
-      // src: "fenagri.png"
+      // FENAGRI is a French acronym, so the description might be the same,
+      // or translated to English for the EN version.
+      description: "National Agri-Food Federation",
+      descriptionFr: "Fédération Nationale de l'Agroalimentaire",
     },
     {
       role: "Agriculture",
+      roleFr: "Agriculture",
       name: "NIRSAL",
       description: "Incentive-Based Risk Sharing System",
-      // src: "nirsal.jpeg"
+      descriptionFr: "Système de partage des risques basé sur les incitations",
     },
     {
       role: "Air Transport",
+      roleFr: "Transport Aérien",
       name: "Royal Air Maroc",
       description: "Official Carrier of the Business Week",
-      // src: "ram.png"
+      descriptionFr: "Transporteur Officiel de la Semaine des Affaires",
     },
   ],
   institutional: [
-    "Ministry of Steel Development", // Matches MSD.jpg
-    "National Automotive Design Council", // Matches NADDC.png
-    "CCISCS", // Matches casa.png (Chamber of Commerce)
-    "Federal Ministry of Industry", // Matches fmiti.png
+    {
+      en: "Ministry of Steel Development",
+      fr: "Ministère du Développement de l'Acier"
+    },
+    {
+      en: "National Automotive Design Council",
+      fr: "Conseil National du Design Automobile"
+    },
+    {
+      en: "CCISCS",
+      fr: "CCISCS" // Acronym usually stays the same
+    },
+    {
+      en: "Federal Ministry of Industry",
+      fr: "Ministère Fédéral de l'Industrie"
+    },
   ],
   strategic: [
-    "Highland Integrated Electricity", // Matches HIESL.png
-    "Jos Electricity Distribution", // Matches jed.jpg
-    "Farm Creed", // Matches farmcreed.jpg
-    "Spectre Trans-Trade Global", // Added from new design
+    // Company names usually remain in their original language
+    { en: "Highland Integrated Electricity", fr: "Highland Integrated Electricity" },
+    { en: "Jos Electricity Distribution", fr: "Jos Electricity Distribution" },
+    { en: "Farm Creed", fr: "Farm Creed" },
+    { en: "Spectre Trans-Trade Global", fr: "Spectre Trans-Trade Global" },
   ],
 };
 
@@ -52,10 +70,24 @@ const PARTNER_DATA = {
 // -------------------------------------------------------
 
 const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
+  const { t, i18n } = useTranslation();
+
+  // Helper for translations
+  const getTranslation = (
+      key: string,
+      enDefault: string,
+      frDefault?: string
+  ) => {
+    const defaultValue =
+        i18n.language === "fr" && frDefault ? frDefault : enDefault;
+    // We use the key if it exists in your json files, otherwise we fall back to the variables provided
+    return t(key, { defaultValue });
+  };
+
   return (
       <section
           ref={ref}
-          id="partners" // Kept "partners" ID so Hero scroll works
+          id="partners"
           className="py-24 md:py-32 bg-[#F9FBF9]"
       >
         <div className="max-w-7xl mx-auto px-6">
@@ -68,10 +100,18 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
                 transition={{ duration: 0.8 }}
             >
               <p className="text-sm font-bold text-[#2C3E30] tracking-[0.2em] uppercase mb-6 font-inter">
-                {PARTNER_DATA.auspices.sub}
+                {getTranslation(
+                    "auspicesSub",
+                    PARTNER_DATA.auspices.sub,
+                    PARTNER_DATA.auspices.subFr
+                )}
               </p>
               <h2 className="text-4xl md:text-7xl font-extrabold text-[#1A1A1A] leading-[0.9] font-syne mx-auto max-w-4xl">
-                The Nigeria Embassy, <br />
+                {getTranslation(
+                    "auspicesTitle",
+                    "The Nigeria Embassy,",
+                    "L'Ambassade du Nigeria,"
+                )} <br />
                 <span className="text-[#2C3E30]">Rabat.</span>
               </h2>
               {/* A decorative Sage divider */}
@@ -84,7 +124,11 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
             <div className="flex items-center gap-4 mb-12 border-b border-[#DDE5D7] pb-4">
               <span className="w-2 h-2 rounded-full bg-[#2C3E30]"></span>
               <h3 className="text-xs font-bold text-[#2C3E30] uppercase tracking-widest font-inter">
-                Official Partners & Sponsors
+                {getTranslation(
+                    "officialPartnersTitle",
+                    "Official Partners & Sponsors",
+                    "Partenaires Officiels & Sponsors"
+                )}
               </h3>
             </div>
 
@@ -92,9 +136,18 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
               {PARTNER_DATA.official.map((partner, index) => (
                   <TypographicCard
                       key={partner.name}
-                      role={partner.role}
+                      // We resolve the translation HERE before passing it to the child
+                      role={getTranslation(
+                          `role_${partner.name}`,
+                          partner.role,
+                          partner.roleFr
+                      )}
                       name={partner.name}
-                      description={partner.description}
+                      description={getTranslation(
+                          `desc_${partner.name}`,
+                          partner.description,
+                          partner.descriptionFr
+                      )}
                       delay={0.1 * (index + 1)}
                   />
               ))}
@@ -108,12 +161,21 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
               <div className="flex items-center gap-4 mb-8 border-b border-[#DDE5D7] pb-4">
                 <span className="w-2 h-2 rounded-full bg-[#DDE5D7]"></span>
                 <h3 className="text-xs font-bold text-[#8A8A8A] uppercase tracking-widest font-inter">
-                  Institutional Partners
+                  {getTranslation(
+                      "institutionalTitle",
+                      "Institutional Partners",
+                      "Partenaires Institutionnels"
+                  )}
                 </h3>
               </div>
               <ul className="space-y-6">
                 {PARTNER_DATA.institutional.map((partner, idx) => (
-                    <ListItem key={idx} text={partner} delay={idx * 0.1} />
+                    <ListItem
+                        key={idx}
+                        // Resolve translation based on current language state
+                        text={i18n.language === 'fr' ? partner.fr : partner.en}
+                        delay={idx * 0.1}
+                    />
                 ))}
               </ul>
             </div>
@@ -123,12 +185,21 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
               <div className="flex items-center gap-4 mb-8 border-b border-[#DDE5D7] pb-4">
                 <span className="w-2 h-2 rounded-full bg-[#DDE5D7]"></span>
                 <h3 className="text-xs font-bold text-[#8A8A8A] uppercase tracking-widest font-inter">
-                  Strategic Partners
+                  {getTranslation(
+                      "strategicTitle",
+                      "Strategic Partners",
+                      "Partenaires Stratégiques"
+                  )}
                 </h3>
               </div>
               <ul className="space-y-6">
                 {PARTNER_DATA.strategic.map((partner, idx) => (
-                    <ListItem key={idx} text={partner} delay={idx * 0.1} />
+                    <ListItem
+                        key={idx}
+                        // Resolve translation based on current language state
+                        text={i18n.language === 'fr' ? partner.fr : partner.en}
+                        delay={idx * 0.1}
+                    />
                 ))}
               </ul>
             </div>
@@ -142,7 +213,7 @@ SecondEditionPartners.displayName = "SecondEditionPartners";
 export default SecondEditionPartners;
 
 // -------------------------------------------------------
-// Sub Components
+// Sub Components (Kept "Dumb" / Presentational)
 // -------------------------------------------------------
 
 const TypographicCard = ({
@@ -161,7 +232,7 @@ const TypographicCard = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: delay }}
-        whileHover={{ x: 10 }} // Subtle shift right on hover
+        whileHover={{ x: 10 }}
         className="group cursor-pointer flex flex-col justify-between h-full border-l-2 border-[#DDE5D7] pl-8 hover:border-[#2C3E30] transition-colors duration-300"
     >
       <div>
