@@ -339,7 +339,6 @@ const Header = ({
                     countdown,
                     getTranslation,
                     onRegister,
-                    onScrollToPartners,
                 }: {
     countdown: Countdown;
     getTranslation: (key: string, en: string, fr?: string) => string;
