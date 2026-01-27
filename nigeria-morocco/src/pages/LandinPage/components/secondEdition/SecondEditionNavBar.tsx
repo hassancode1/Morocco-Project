@@ -117,7 +117,7 @@ const SecondEditionNavBar: React.FC<Props> = ({ onRegister, onBook }) => {
         >
           {getTranslation("firstEditionLink", "1st Edition", "1ère édition")}
         </motion.a>
-        <Button
+        {/* <Button
           type="primary"
           ghost
           onClick={(e) => {
@@ -131,7 +131,7 @@ const SecondEditionNavBar: React.FC<Props> = ({ onRegister, onBook }) => {
             "Book A Space",
             "Obtenez Votre Stand/Espace"
           )}
-        </Button>
+        </Button> */}
         <Button
           onClick={onRegister}
           className="bg-primary min-w-[115px] h-[40px] text-[12px] lg:text-sm text-white hover:scale-105 transition whitespace-nowrap"

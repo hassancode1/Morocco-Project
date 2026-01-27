@@ -395,10 +395,10 @@ const Header = ({
                     </button>
 
                     <button
-                        onClick={onScrollToPartners}
+                        onClick={onRegister}
                         className="px-6 py-4 bg-transparent border border-[#2C3E30] text-[#2C3E30] rounded-xl font-bold hover:bg-[#2C3E30] hover:text-[#F9FBF9] transition-all"
                     >
-                        {getTranslation("learnBtn", "Learn More", "En Savoir Plus")}
+                        {getTranslation("learnBtn", "Book An Exhibition Space", "Réserver un espace d'exposition")}
                     </button>
 
                     <div className="flex flex-col border-l-2 border-[#DDE5D7] pl-6">
