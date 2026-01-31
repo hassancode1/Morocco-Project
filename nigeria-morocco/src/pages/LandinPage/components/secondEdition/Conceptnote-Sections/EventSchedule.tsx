@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Building2, Factory, Award, ArrowRight } from "lucide-react";
+import { Calendar, MapPin, Building2, Factory, Award } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 // ----------------------------------------------------------------------

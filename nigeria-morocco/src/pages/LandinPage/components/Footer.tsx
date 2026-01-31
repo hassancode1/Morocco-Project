@@ -1,4 +1,4 @@
-"use client";
+
 
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -52,8 +52,16 @@ export default function Footer() {
               </p>
 
               <div className="flex items-center gap-3 mt-4">
-                <SocialButton icon={<Twitter size={18} />} href="#" label="Twitter" />
-                <SocialButton icon={<Instagram size={18} />} href="#" label="Instagram" />
+                <SocialButton 
+                  icon={<Twitter size={18} />} 
+                  href="https://x.com/nmbw_official?s=21" 
+                  label="Twitter" 
+                />
+                <SocialButton 
+                  icon={<Instagram size={18} />} 
+                  href="https://www.instagram.com/nigeria_moroccobusinessweek_?igsh=MTJrY3p4anA4bXVxcQ%3D%3D&utm_source=qr" 
+                  label="Instagram" 
+                />
                 <SocialButton icon={<Linkedin size={18} />} href="#" label="LinkedIn" />
               </div>
             </div>
@@ -90,8 +98,8 @@ export default function Footer() {
             <p className="text-xs text-[#4A4A4A]">
               {getTranslation(
                   "Copyright",
-                  "© 2025 Nigeria-Morocco Business Week. All rights reserved.",
-                  "© 2025 Semaine des affaires Nigeria-Maroc. Tous droits réservés."
+                  "© 2026 Nigeria-Morocco Business Week. All rights reserved.",
+                  "© 2026 Semaine des affaires Nigeria-Maroc. Tous droits réservés."
               )}
             </p>
 
@@ -111,6 +119,8 @@ export default function Footer() {
 const SocialButton = ({ icon, href, label }: { icon: React.ReactNode, href: string, label: string }) => (
     <a
         href={href}
+        target="_blank"
+        rel="noopener noreferrer"
         aria-label={label}
         className="w-10 h-10 rounded-xl bg-[#151C18] border border-[#2C3E30] flex items-center justify-center text-white hover:bg-[#4F7A55] hover:border-[#4F7A55] transition-all duration-300"
     >
