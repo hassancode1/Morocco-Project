@@ -7,7 +7,8 @@ import {
     Laptop,
     Landmark,
     Gem,
-    Plane
+    Plane,
+    Sparkles
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -41,7 +42,7 @@ export default function SectoralFocus() {
                         </span>
                     </div>
                     <h2 className="text-4xl md:text-6xl font-extrabold text-[#1A1A1A] mb-6 font-syne leading-tight">
-                        {getTranslation("sectorTitle1", "Six Pillars of", "Six Piliers de")} <br />
+                        {getTranslation("sectorTitle1", "Seven Pillars of", "Sept Piliers de")} <br />
                         <span className="text-[#2C3E30]">
                             {getTranslation("sectorTitle2", "Strategic Growth.", "Croissance Stratégique.")}
                         </span>
@@ -127,6 +128,14 @@ const sectors = [
         descriptionFr: "Partenariats stratégiques dans l'extraction et le traitement du Lithium, du Minerai de Fer et du Phosphate.",
         image: "https://images.unsplash.com/photo-1625479610681-f789345a8157?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3",
         icon: <Gem className="w-6 h-6" />,
+    },
+    {
+        title: "Cosmetics & Beauty",
+        titleFr: "Cosmétiques & Beauté",
+        description: "Partnerships in natural beauty products, argan oil exports, and cosmetic manufacturing.",
+        descriptionFr: "Partenariats dans les produits de beauté naturels, les exportations d'huile d'argan et la fabrication de cosmétiques.",
+        image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3",
+        icon: <Sparkles className="w-6 h-6" />,
     },
 ];
 
