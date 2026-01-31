@@ -42,10 +42,13 @@ const PARTNER_DATA = {
     logo: "/logo/1.png"
   },
   institutional: [
+    { en: "Livestock Ministry", fr: "Ministère de l'Élevage", logo: "/livestock-ministry.jpeg" },
+    { en: "LPress", fr: "LPress", logo: "/lpress-ministry.jpeg" },
     { en: "Ministry of Steel Development", fr: "Ministère du Développement de l'Acier", logo: "/MSD.jpg" },
     { en: "National Automotive Design Council", fr: "Conseil National du Design Automobile", logo: "/NADDC.png" },
     { en: "CCISCS", fr: "CCISCS", logo: "/cciscs.jpg" },
     { en: "Federal Ministry of Industry", fr: "Ministère Fédéral de l'Industrie", logo: "/fmiti.png" },
+
   ],
   strategic: [
     { en: "Highland Integrated Electricity", fr: "Highland Integrated Electricity", logo: "/HIESL.png" },
@@ -94,9 +97,11 @@ const SecondEditionPartners = forwardRef<HTMLDivElement>((_, ref) => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
             >
+
               <p className="text-sm font-bold text-[#2C3E30] tracking-[0.2em] uppercase mb-6 font-inter">
                 {getTranslation("auspicesSub", PARTNER_DATA.auspices.sub, PARTNER_DATA.auspices.subFr)}
               </p>
+              <img src="/nigerian-embassy.png" alt="Nigeria Embassy" className="w-20 h-20" />
               <h2 className="text-4xl md:text-7xl font-extrabold text-[#1A1A1A] leading-[0.9] font-syne mx-auto max-w-4xl">
                 {getTranslation("auspicesTitle", "The Nigeria Embassy,", "L'Ambassade du Nigeria,")} <br />
                 <span className="text-[#2C3E30]">Rabat.</span>

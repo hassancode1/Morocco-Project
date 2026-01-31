@@ -59,8 +59,8 @@ export default function WelcomeSection() {
                                 <p className="text-xl font-syne font-bold text-white">
                                     {getTranslation(
                                         "welcomeDateVal",
-                                        "9-11 Feb 2026",
-                                        "9-11 Fév 2026"
+                                        "9-12 Feb 2026",
+                                        "9-12 Fév 2026"
                                     )}
                                 </p>
                             </div>

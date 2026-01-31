@@ -420,8 +420,8 @@ const Header = ({
                         <span className="text-sm font-bold text-[#1A1A1A]">
               {getTranslation(
                   "heroEventDate",
-                  "Feb 9 - 11, 2026",
-                  "9-11 Février 2026"
+                  "Feb 9 - 12, 2026",
+                  "9-12 Février 2026"
               )}
             </span>
                     </div>

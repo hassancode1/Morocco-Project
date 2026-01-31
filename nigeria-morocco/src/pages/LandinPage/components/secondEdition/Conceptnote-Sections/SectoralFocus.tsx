@@ -85,7 +85,7 @@ const sectors = [
         titleFr: "Agriculture & Agro-industrie",
         description: "Joint ventures in fertilizer production (OCP), dairy processing, and localized farming technologies.",
         descriptionFr: "Coentreprises dans la production d'engrais (OCP), la transformation laitière et les technologies agricoles localisées.",
-        image: "https://images.unsplash.com/photo-1625246333195-f8196812c850?q=80&w=800&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3",
         icon: <Sprout className="w-6 h-6" />,
     },
     {
@@ -93,7 +93,7 @@ const sectors = [
         titleFr: "Énergie Renouvelable",
         description: "Solar and wind energy projects leveraging Morocco's Noor expertise and Nigeria's vast potential.",
         descriptionFr: "Projets d'énergie solaire et éolienne tirant parti de l'expertise Noor du Maroc et du vaste potentiel du Nigeria.",
-        image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=800&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3",
         icon: <Zap className="w-6 h-6" />,
     },
     {
@@ -101,7 +101,7 @@ const sectors = [
         titleFr: "Économie Numérique",
         description: "Fintech partnerships, startup ecosystems, and cross-border digital payment infrastructures.",
         descriptionFr: "Partenariats Fintech, écosystèmes de startups et infrastructures de paiement numérique transfrontalières.",
-        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3",
         icon: <Laptop className="w-6 h-6" />,
     },
     {
@@ -109,7 +109,7 @@ const sectors = [
         titleFr: "Banque & Finance",
         description: "Cross-border banking expansion, trade finance facilitation, and investment protection frameworks.",
         descriptionFr: "Expansion bancaire transfrontalière, facilitation du financement du commerce et cadres de protection des investissements.",
-        image: "https://images.unsplash.com/photo-1604594849806-d63dfbac4891?q=80&w=800&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3",
         icon: <Landmark className="w-6 h-6" />,
     },
     {
@@ -117,7 +117,7 @@ const sectors = [
         titleFr: "Tourisme & Culture",
         description: "Cultural exchange programs, eco-tourism investments, and artisanal export corridors.",
         descriptionFr: "Programmes d'échange culturel, investissements écotouristiques et corridors d'exportation artisanaux.",
-        image: "https://images.unsplash.com/photo-1534234828563-02511c75904d?q=80&w=800&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3",
         icon: <Plane className="w-6 h-6" />,
     },
     {
@@ -125,7 +125,7 @@ const sectors = [
         titleFr: "Mines & Minéraux Solides",
         description: "Strategic partnerships in Lithium, Iron Ore, and Phosphate extraction and processing.",
         descriptionFr: "Partenariats stratégiques dans l'extraction et le traitement du Lithium, du Minerai de Fer et du Phosphate.",
-        image: "https://images.unsplash.com/photo-1518182170546-0766aa6f6a56?q=80&w=800&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1625479610681-f789345a8157?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3",
         icon: <Gem className="w-6 h-6" />,
     },
 ];

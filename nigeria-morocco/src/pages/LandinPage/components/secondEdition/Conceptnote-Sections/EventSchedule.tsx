@@ -36,7 +36,7 @@ export default function EventSchedule() {
                     <h2 className="text-4xl md:text-6xl font-extrabold text-[#1A1A1A] font-syne leading-tight mb-6">
                         {getTranslation("itineraryTitle1", "Three Cities.", "Trois Villes.")} <br />
                         <span className="text-[#2C3E30]">
-                            {getTranslation("itineraryTitle2", "Three Days.", "Trois Jours.")}
+                            {getTranslation("itineraryTitle2", "Four Days.", "Quatre Jours.")}
                         </span>
                     </h2>
                     <p className="text-lg text-[#4A4A4A] font-inter leading-relaxed max-w-xl">
@@ -52,7 +52,7 @@ export default function EventSchedule() {
                 <div className="hidden lg:block absolute top-[40%] left-0 w-full h-px border-t-2 border-dashed border-[#DDE5D7] z-0 pointer-events-none" />
 
                 {/* --- TIMELINE CARDS --- */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 relative z-10">
 
                     {/* LAGOS - Forest Green */}
                     <ProgrammeCard
@@ -106,7 +106,7 @@ export default function EventSchedule() {
                         activities={[
                             getTranslation("act3_1", "Award Ceremony", "Cérémonie de Remise de Prix"),
                             getTranslation("act3_2", "Government Roundtable", "Table Ronde Gouvernementale"),
-                            getTranslation("act3_3", "Closing Ceremony", "Cérémonie de Clôture")
+                            getTranslation("act3_3", "Networking Session", "Session de Réseautage")
                         ]}
                         labels={{
                             venue: getTranslation("lblVenue", "Venue", "Lieu"),
@@ -117,19 +117,40 @@ export default function EventSchedule() {
                         delay={0.3}
                     />
 
+                    {/* ABUJA - Day 4 */}
+                    <ProgrammeCard
+                        day={getTranslation("day4", "Day 04", "Jour 04")}
+                        city="Abuja"
+                        date={getTranslation("date4", "Feb 12, 2026", "12 Fév 2026")}
+                        venue="Abuja Continental Hotel"
+                        theme={getTranslation("theme4", "Closing & Departure", "Clôture & Départ")}
+                        activities={[
+                            getTranslation("act4_1", "Closing Ceremony", "Cérémonie de Clôture"),
+                            getTranslation("act4_2", "Final Networking", "Dernier Réseautage"),
+                            getTranslation("act4_3", "Departure", "Départ")
+                        ]}
+                        labels={{
+                            venue: getTranslation("lblVenue", "Venue", "Lieu"),
+                            activities: getTranslation("lblActivities", "Activities", "Activités")
+                        }}
+                        icon={<Award className="w-6 h-6" />}
+                        variant="charcoal"
+                        delay={0.4}
+                    />
+
                 </div>
 
                 {/* --- CTA --- */}
-                <div className="mt-20 flex justify-center">
+                {/* <div className="mt-20 flex justify-center">
                     <button className="group relative px-8 py-4 bg-[#1A1A1A] text-white font-bold rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 shadow-xl font-syne">
                         <span className="relative z-10 flex items-center gap-2">
                             {getTranslation("downloadAgenda", "Download Full Agenda", "Télécharger l'Agenda Complet")}
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </span>
-                        {/* Hover fill effect */}
+
                         <div className="absolute inset-0 bg-[#2C3E30] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                     </button>
-                </div>
+                </div> */}
 
             </div>
         </section>
