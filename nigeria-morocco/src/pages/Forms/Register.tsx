@@ -155,22 +155,14 @@ export default function Register() {
         return;
       }
 
-      if (phoneNumber.startsWith("+234")) {
-        if (!values.passport_expiry || !values.passport_number) {
-          notification.error({
-            message: "Please complete your international passport record",
-          });
-          return;
-        }
-      }
-
-      if (phoneNumber.startsWith("+212")) {
-        if (!values.cin || !values.cin_expiry) {
-          notification.error({
-            message: "Please complete your international passport record",
-          });
-          return;
-        }
+      // Require passport fields for all users
+      if (!values.passport_expiry || !values.passport_number) {
+        notification.error({
+          message: i18n.language === "fr" 
+            ? "Veuillez compléter votre dossier de passeport international"
+            : "Please complete your international passport record",
+        });
+        return;
       }
       const registered = await register(values);
       if (registered.status) {
@@ -640,32 +632,30 @@ export default function Register() {
                 ]}
               />
             </div>
-            {phoneNumber.startsWith("+234") && (
-              <div className="flex flex-col md:flex-row gap-0 md:gap-3 items-center">
-                <Input
-                  value={formik.values.passport_number}
-                  onChange={formik.handleChange}
-                  id="passport_number"
-                  className="w-full md:w-[70%]"
-                  required
-                  label="Passport number"
-                  placeholder="Enter your passport number"
-                  outlined={true}
-                />
+            <div className="flex flex-col md:flex-row gap-0 md:gap-3 items-center">
+              <Input
+                value={formik.values.passport_number}
+                onChange={formik.handleChange}
+                id="passport_number"
+                className="w-full md:w-[70%]"
+                required
+                label={i18n.language === "fr" ? "Numéro de passeport" : "Passport number"}
+                placeholder={i18n.language === "fr" ? "Entrez votre numéro de passeport" : "Enter your passport number"}
+                outlined={true}
+              />
 
-                <Input
-                  value={formik.values.passport_expiry}
-                  id="passport_expiry"
-                  onChange={formik.handleChange}
-                  className="w-full md:w-[30%]"
-                  required
-                  label="Passport expiration date"
-                  placeholder="Enter the expiration date"
-                  outlined={true}
-                  type="date"
-                />
-              </div>
-            )}
+              <Input
+                value={formik.values.passport_expiry}
+                id="passport_expiry"
+                onChange={formik.handleChange}
+                className="w-full md:w-[30%]"
+                required
+                label={i18n.language === "fr" ? "Date d'expiration du passeport" : "Passport expiration date"}
+                placeholder={i18n.language === "fr" ? "Entrez la date d'expiration" : "Enter the expiration date"}
+                outlined={true}
+                type="date"
+              />
+            </div>
 
             {formik.values.governmental ? (
               <div className="flex flex-col md:flex-row gap-0 md:gap-3 items-center">
@@ -797,9 +787,7 @@ export default function Register() {
                       value={formik.values.annual_turnover}
                       onChange={formik.handleChange}
                       className="w-full"
-                      label={`${t("annual")} ${
-                        phoneNumber.startsWith("+234") ? "(USD)" : "(USD)"
-                      }`}
+                      label={`${t("annual")} (USD)`}
                       outlined={true}
                       prefix="$"
                     />
@@ -838,37 +826,6 @@ export default function Register() {
                   />
                 </div>
               </>
-            )}
-            {!phoneNumber.startsWith("+234") && (
-              <div className="flex flex-col md:flex-row gap-0 md:gap-3 items-center">
-                <Input
-                  id="cin"
-                  error={
-                    formik.touched.cin && formik.errors.cin
-                      ? formik.errors.cin
-                      : ""
-                  }
-                  value={formik.values.cin}
-                  onChange={formik.handleChange}
-                  className="w-full md:w-[70%]"
-                  required
-                  label={"CIN Nombre"}
-                  outlined={true}
-                  type="number"
-                />
-
-                <Input
-                  value={formik.values.cin_expiry}
-                  id="cin_expiry"
-                  onChange={formik.handleChange}
-                  className="w-full md:w-[30%]"
-                  required
-                  label={t("expiry")}
-                  placeholder="Enter the expiration date"
-                  outlined={true}
-                  type="date"
-                />
-              </div>
             )}
             <div className="flex flex-col md:flex-row gap-0 md:gap-3 items-center">
               <Input
@@ -1056,9 +1013,7 @@ export default function Register() {
                       <>
                         <div className="flex justify-between w-full mb-1">
                           <span className="text-gray-700 font-medium">
-                            {phoneNumber.startsWith("+234")
-                              ? "Subtotal"
-                              : "Sous-total"}
+                            {i18n.language === "fr" ? "Sous-total" : "Subtotal"}
                           </span>
                           <span className="font-semibold">
                             {base.toLocaleString()} MAD HT
@@ -1066,9 +1021,7 @@ export default function Register() {
                         </div>
                         <div className="flex justify-between w-full mb-1">
                           <span className="text-gray-700 font-medium">
-                            {phoneNumber.startsWith("+234")
-                              ? "Tax (20%)"
-                              : "TVA (20%)"}
+                            {i18n.language === "fr" ? "TVA (20%)" : "Tax (20%)"}
                           </span>
                           <span className="font-semibold">
                             {tax.toLocaleString(undefined, {
@@ -1080,9 +1033,7 @@ export default function Register() {
                         <div className="border-b border-gray-300 w-full my-2" />
                         <div className="flex justify-between w-full">
                           <span className="text-primary font-bold text-lg">
-                            {phoneNumber.startsWith("+234")
-                              ? "Grand Total"
-                              : "Montant Total"}
+                            {i18n.language === "fr" ? "Montant Total" : "Grand Total"}
                           </span>
                           <span className="text-green-700 font-bold text-lg">
                             {total.toLocaleString(undefined, {
@@ -1120,9 +1071,9 @@ export default function Register() {
                 className="bg-primary h-[38px] text-white font-semibold rounded-lg shadow hover:scale-105 transition-all duration-200"
                 type="primary"
               >
-                {phoneNumber.startsWith("+234")
-                  ? "Submit & proceed to payment"
-                  : t("Submit")}
+                {i18n.language === "fr" 
+                  ? t("Submit")
+                  : "Submit & proceed to payment"}
               </Button>
             </div>
           </div>
