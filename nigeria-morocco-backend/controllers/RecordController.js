@@ -153,22 +153,22 @@ module.exports.post = async (req, res) => {
     let mailOptions = {
       from: process.env.EMAIL_ADDRESS, // sender address
       to: email, // list of receivers
-      subject: "Nigeria-Morocco Business Week 2025", // Subject line
+      subject: "Nigeria-Morocco Business Week 2026", // Subject line
       html: `
         <div style="font-family: Arial, sans-serif; background: #f9f9f9; padding: 30px; border-radius: 8px; max-width: 500px; margin: auto; color: #222;">
           <div style="text-align: center; margin-bottom: 24px;">
-            <h2 style="color: #0a4d8c; margin-bottom: 8px;">Nigeria-Morocco Business Week 2025</h2>
+            <h2 style="color: #0a4d8c; margin-bottom: 8px;">Nigeria-Morocco Business Week 2026</h2>
             <p style="font-size: 16px; margin: 0;">Registration Confirmation</p>
           </div>
           <div style="background: #fff; padding: 24px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
             <p style="font-size: 16px;">Dear <strong>${first_name} ${last_name}</strong>,</p>
-            <p style="font-size: 15px;">Thank you for registering for the <strong>Nigeria-Morocco Business Week 2025</strong>! We are delighted to confirm your interest in participating in this prestigious event, where business leaders and innovators from both nations will connect and collaborate.</p>
+            <p style="font-size: 15px;">Thank you for registering for the <strong>Nigeria-Morocco Business Week 2026</strong>! We are delighted to confirm your interest in participating in this prestigious event, where business leaders and innovators from both nations will connect and collaborate.</p>
           <!--  <p style="font-size: 15px;">Please find your unique QR code below. Kindly present this code at the event entrance for a smooth check-in process:</p>
             <div style="text-align: center; margin: 20px 0;">
               <img src="cid:qr_code" style="height: 150px; width: 150px; border: 1px solid #eee; border-radius: 8px;" alt="QR Code">
             </div> -->
             <p style="font-size: 15px;">Event Details:<br>
-              <strong>📅 Date:</strong> 8th - 11th December 2025<br>
+              <strong>📅 Date:</strong> 9th - 12th February 2026<br>
               <strong>📍 Locations:</strong> Lagos, Kano and Abuja (Nigeria)<br>
               <strong>🕗 Time:</strong> 08:00 - 19:00 daily
             </p>
@@ -178,7 +178,7 @@ module.exports.post = async (req, res) => {
             <p style="font-size: 15px; margin-top: 32px;">Best regards,<br><span style="color: #0a4d8c; font-weight: bold;">Nigeria-Morocco Business Week Team</span></p>
           </div>
           <div style="text-align: center; font-size: 12px; color: #888; margin-top: 24px;">
-            &copy; 2025 Nigeria-Morocco Business Week. All rights reserved.
+            &copy; 2026 Nigeria-Morocco Business Week. All rights reserved.
           </div>
         </div>
       `, // HTML body with image embedded
