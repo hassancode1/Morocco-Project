@@ -22,6 +22,19 @@ export default function UserProfile() {
     }
   };
 
+
+  const getEventYear = () => {
+    if (!data?.creation_date) return "2026";
+    const date = new Date(data.creation_date);
+    return date.getFullYear().toString();
+  };
+
+  // Format event date using year from creation_date
+  const formatEventDate = () => {
+    const year = getEventYear();
+    return `February 9th-12th, ${year}`;
+  };
+
   async function printEventPassMember() {
     const element = document.querySelector("#event-pass-member");
     html2pdf(element);
@@ -218,9 +231,9 @@ export default function UserProfile() {
 
               <div className="mt-5 flex flex-col items-center mx-auto mb-5">
                 <h1 className="text-primary font-bold">
-                  Nigeria Morocco Business Week 2024
+                  Nigeria Morocco Business Week {getEventYear()}
                 </h1>
-                <p>October 29th-31st, 2024</p>
+                <p>{formatEventDate()}</p>
                 <p className="text-3xl text-gray-800 text-center">
                   {" "}
                   <img
@@ -280,9 +293,9 @@ export default function UserProfile() {
 
               <div className="mt-5 flex flex-col items-center mx-auto mb-5">
                 <h1 className="text-primary font-bold">
-                  Nigeria Morocco Business Week 2024
+                  Nigeria Morocco Business Week {getEventYear()}
                 </h1>
-                <p>October 29th-31st, 2024</p>
+                <p>{formatEventDate()}</p>
                 <p className="text-3xl text-gray-800 text-center">
                   {" "}
                   <img
