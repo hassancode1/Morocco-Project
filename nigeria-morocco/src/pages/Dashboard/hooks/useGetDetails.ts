@@ -8,6 +8,7 @@ interface CompanyData {
   address: string;
   business_sub_sector: string;
   company_name: string;
+  date_created: string;
   company_niche: string[];
   creation_date: string;
   email: string;

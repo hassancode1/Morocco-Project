@@ -6,6 +6,7 @@ import AntTextArea from "../../../components/TextArea";
 import DeleteIcon from "../compopnents/DeleteIcon";
 import useDeleteRecord from "../hooks/useDeleteRecord";
 import html2pdf from "html2pdf.js"; // you can also use react-to-print
+import moment from "moment";
 
 export default function UserProfile() {
   const location = useLocation();
@@ -24,12 +25,13 @@ export default function UserProfile() {
 
 
   const getEventYear = () => {
-    if (!data?.creation_date) return "2026";
-    const date = new Date(data.creation_date);
+    if (!data?.date_created
+    ) return "2026";
+    const date = new Date(data.date_created);
     return date.getFullYear().toString();
   };
 
-  // Format event date using year from creation_date
+
   const formatEventDate = () => {
     const year = getEventYear();
     return `February 9th-12th, ${year}`;
@@ -103,7 +105,7 @@ export default function UserProfile() {
                 <div>
                   <p className="text-gray-500">Date Of Creation</p>
                   <h3 className="font-medium text-gray-800">
-                    {data?.creation_date}
+                    {moment(data?.creation_date).format("DD/MM/YYYY")}
                   </h3>
                 </div>
               </div>

@@ -1,19 +1,27 @@
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import DashbordIcon from './compopnents/DashbordIcon';
 import ProfileIcon from './compopnents/ProfileIcon';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux';
 import UsersIcon from './compopnents/UsersIcon';
 import SpaaceIcon from './compopnents/SpaaceIcon';
 import NewsIcon from "./compopnents/NewsIcon";
 import { Button } from 'antd';
+import { clearUser } from '../../redux/slices/userSlice';
 
 export default function DashboardLayout() {
   const location = useLocation();
   const user = useSelector((user: RootState) => user.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const total_witdth = window.innerWidth;
   const percent = (15 / 100) * total_witdth;
   const isNotMobile = window.innerWidth > 768;
+
+  const handleLogout = () => {
+    dispatch(clearUser());
+    navigate('/login');
+  };
   return (
     <div className="flex h-[100vh] w-[100vw] bg-white overflow-x-hidden">
       <div className="hidden md:w-[15%] md:flex flex-col h-full bg-[#F2F2F2] py-20 px-5 fixed">
@@ -170,11 +178,12 @@ export default function DashboardLayout() {
               </h1>
               <p className="text-[14px]">{user.user.role}</p>
             </div>
-            <Link to="/login">
-              <Button className="bg-red-900 w-[115px] h-[30px] ml-[20px] text-white">
-                Log out
-              </Button>
-            </Link>
+            <Button 
+              onClick={handleLogout}
+              className="bg-red-900 w-[115px] h-[30px] ml-[20px] text-white"
+            >
+              Log out
+            </Button>
           </div>
         </div>
         <div className="flex-1 flex flex-col p-10">{<Outlet />}</div>
